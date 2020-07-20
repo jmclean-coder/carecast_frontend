@@ -2,9 +2,9 @@ import React from 'react';
 import LoginForm from '../components/homepage/LoginForm';
 
 
-export default function LoginPage(){
+export default function LoginPage(props){
     return(
-        <LoginForm />
+        <LoginForm onLogin={props.onLogin} />
     )
 
 }

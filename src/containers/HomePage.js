@@ -2,21 +2,22 @@ import React from 'react';
 import CardDeck from 'react-bootstrap/CardDeck'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import HomeNavBar from '../components/homepage/HomeNavBar';
+import {Link} from 'react-router-dom';
 
 // import './App.css';
 
 function HomePage() {
   return (
     <>
-    <HomeNavBar />
     <Card className="text-center">
     <Card.Body>
       <Card.Title>Care Cast</Card.Title>
       <Card.Text>
         Give yourself the gift of care today.
       </Card.Text>
+      <Link to="/signup">
       <Button variant="primary">Signup</Button>
+      </Link>
     </Card.Body>
   </Card>
 <br></br>
