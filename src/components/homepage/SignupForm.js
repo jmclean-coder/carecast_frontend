@@ -9,16 +9,21 @@ export default class SignupForm extends React.Component {
     password: "",
   };
 
-  render() {
+  handleChange = (e) => {
+    this.setState({
+      [e.target.type]: e.target.value
+  })
+  }
+  render()  {
     return (
       <Form>
         <Form.Group controlId="formBasicFullName">
           <Form.Label>Full Name</Form.Label>
-          <Form.Control type="fullName" placeholder="Enter your full name" />
+          <Form.Control type="fullname" placeholder="Enter your full name" />
         </Form.Group>
         <Form.Group controlId="formBasicUserName">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="fullName" placeholder="Enter your full name" />
+          <Form.Control type="fullName" placeholder="Enter username" />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
