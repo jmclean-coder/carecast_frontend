@@ -1,6 +1,6 @@
 import React from "react";
-
-export default class DashboardPage extends React.Component {
+import PrivacyHOC from '../HOCs/PrivacyHOC'
+class DashboardPage extends React.Component {
   
   
     render() {
@@ -11,3 +11,4 @@ export default class DashboardPage extends React.Component {
     );
   }
 }
+export default PrivacyHOC(DashboardPage)
