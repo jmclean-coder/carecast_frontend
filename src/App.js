@@ -28,8 +28,8 @@ export default class App extends React.Component {
           auth: {
             ...this.state.auth,
             user: { id: user.id, username: user.username },
+            loggedIn: true
           },
-          loggedIn: true
         });
       });
     }
@@ -44,6 +44,7 @@ export default class App extends React.Component {
       auth: {
         ...this.state.auth,
         user: { id: data.id, username: data.username },
+        loggedIn: true
       },
     });
   };
@@ -51,7 +52,7 @@ export default class App extends React.Component {
   logout = () => {
     localStorage.removeItem("token")
     this.setState({
-      auth:{user:{}}
+      auth:{user:{}, loggedIn: false}
     })
   };
 
@@ -77,22 +78,22 @@ export default class App extends React.Component {
           <Route
             exact
             path="/dashboard"
-            render={(routerProps) => <DashboardPage {...routerProps} />}
+            render={(routerProps) => <DashboardPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
             />
           <Route
             exact
-            path="/journals"
-            render={(routerProps) => <JournalPage {...routerProps} />}
+            path="/journal"
+            render={(routerProps) => <JournalPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
             />
           <Route
             exact
             path="/feeling_tracker"
-            render={(routerProps) => <FeelingPage {...routerProps} />}
+            render={(routerProps) => <FeelingPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
             />
           <Route
             exact
             path="/todos"
-            render={(routerProps) => <ListPage {...routerProps} />}
+            render={(routerProps) => <ListPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
             />
             </Switch>
         </Router>
