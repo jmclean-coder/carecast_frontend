@@ -1,9 +1,9 @@
 import React from 'react';
 import SignupForm from '../components/homepage/SignupForm';
 
-export default function SignupPage(){
+export default function SignupPage(props){
     return(
-        <SignupForm />
+        <SignupForm onLogin={props.onLogin} routerProps={props}/>
     )
 
 }

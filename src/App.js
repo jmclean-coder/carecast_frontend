@@ -66,7 +66,7 @@ export default class App extends React.Component {
           <Route
             exact
             path="/signup"
-            render={(routerProps) => <SignupPage {...routerProps} />}
+            render={(routerProps) => <SignupPage {...routerProps} onLogin={this.login}/>}
             />
           <Route
             exact

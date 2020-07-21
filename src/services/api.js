@@ -27,9 +27,22 @@ const getCurrentUser = () =>{
 
 }
 
+const createNewUser = data => { 
+    
+    return fetch(`${API_ROOT}/users`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+}
+
 export const api ={
     auth: {
         login,
         getCurrentUser
     },
+    user:{
+        createNewUser,
+    }
 }
