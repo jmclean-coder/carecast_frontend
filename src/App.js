@@ -17,6 +17,14 @@ export default class App extends React.Component {
       user: {},
       loggedIn: false
     },
+    userData:{
+      fullName:"",
+      userRatings:[],
+      feelings: [],
+      journalEntries:[],
+      todos:[],
+
+    }
   };
   //each time a component mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
@@ -31,13 +39,16 @@ export default class App extends React.Component {
             loggedIn: true
           },
         });
-      });
+        this.getUserData(user.id)
+      }); 
+      
     }
   }
 
   //initial login, user is who they say they are authentication. set's token
   login = (data) => {
-    console.log(data);
+    // user data and token from fetch in api
+    // console.log(data);
     //setting token in localstorage
     localStorage.setItem("token", data.jwt);
     this.setState({
@@ -47,6 +58,7 @@ export default class App extends React.Component {
         loggedIn: true
       },
     });
+    this.getUserData(data.id)
   };
 
   logout = () => {
@@ -56,10 +68,29 @@ export default class App extends React.Component {
     })
   };
 
+  getUserData = id =>{
+    // console.log(id)
+    api.user.fetchUserData(id)
+    .then(res =>{
+      const {full_name, user_name, journal_entries, list_items, feelings, user_ratings} = res.data.attributes
+      console.log(full_name, user_name, journal_entries, list_items, feelings, user_ratings)
+      this.setState({
+        userData: {
+          ...this.state.userData,
+          fullName: full_name,
+          userRatings:[...user_ratings],
+          feelings: [...feelings],
+          journalEntries:[...journal_entries],
+          todos:[...list_items],
+        },
+      });
+    }
+  )
+}
   render() {
     return (
       <div className="App">
-        <Router>
+         <Router>
           <HomeNavBar onLogout={this.logout}/>
           <Switch>
           <Route exact path="/" component={HomePage} />
@@ -78,22 +109,22 @@ export default class App extends React.Component {
           <Route
             exact
             path="/dashboard"
-            render={(routerProps) => <DashboardPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
+            render={(routerProps) => <DashboardPage {...routerProps} loggedIn={this.state.auth.loggedIn} userData={this.state.userData}/>}
             />
           <Route
             exact
             path="/journal"
-            render={(routerProps) => <JournalPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
+            render={(routerProps) => <JournalPage {...routerProps} loggedIn={this.state.auth.loggedIn} userJournalEntries={this.state.userData.journalEntries}/>}
             />
           <Route
             exact
             path="/feeling_tracker"
-            render={(routerProps) => <FeelingPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
+            render={(routerProps) => <FeelingPage {...routerProps} loggedIn={this.state.auth.loggedIn} userFeelings={this.state.userData.feelings}/>}
             />
           <Route
             exact
             path="/todos"
-            render={(routerProps) => <ListPage {...routerProps} loggedIn={this.state.auth.loggedIn}/>}
+            render={(routerProps) => <ListPage {...routerProps} loggedIn={this.state.auth.loggedIn} userTodos={this.state.userData.todos}/>}
             />
             </Switch>
         </Router>

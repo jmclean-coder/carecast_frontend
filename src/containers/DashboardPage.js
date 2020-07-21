@@ -3,11 +3,14 @@ import PrivacyHOC from '../HOCs/PrivacyHOC'
 class DashboardPage extends React.Component {
   
   
-    render() {
+  render() {
+    const {fullName, username, journalEntries, todos, feelings, userRatings} = this.props.userData
+
     return (
-      <div>
-        <h1>Dashboard Page Temp</h1>
-      </div>
+     <div>
+       
+       { fullName ? <h1>Hello {`${fullName}`}</h1> : <h1>Hello!</h1>}
+     </div>
     );
   }
 }

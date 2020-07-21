@@ -1,6 +1,7 @@
 const API_ROOT = `http://localhost:3000/api/v1`;
 const token = () => localStorage.getItem("token");
 
+
 const headers = () => {
   return {
     "Content-Type": "application/json",
@@ -20,7 +21,7 @@ const login = data =>{
 }
 
 const getCurrentUser = () =>{
-    return fetch(`${API_ROOT}/current_user`, {
+    return fetch(`${API_ROOT}/currentuser`, {
         headers: headers()
     })
     .then(res => res.json())
@@ -37,6 +38,14 @@ const createNewUser = data => {
     .then(res => res.json())
 }
 
+const fetchUserData = id => {
+    return fetch(`${API_ROOT}/users/${id}`, {
+        headers: headers()                                        
+    })
+    .then(res => res.json())
+
+}
+
 export const api ={
     auth: {
         login,
@@ -44,5 +53,6 @@ export const api ={
     },
     user:{
         createNewUser,
+        fetchUserData,
     }
 }
