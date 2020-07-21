@@ -59,8 +59,8 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <Switch>
           <HomeNavBar onLogout={this.logout}/>
+          <Switch>
           <Route exact path="/" component={HomePage} />
           <Route
             exact
