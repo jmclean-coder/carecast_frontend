@@ -15,6 +15,7 @@ export default class App extends React.Component {
   state = {
     auth: {
       user: {},
+      loggedIn: false
     },
   };
   //each time a component mounts checks to see if authorized to access so you don't have to login again
@@ -28,6 +29,7 @@ export default class App extends React.Component {
             ...this.state.auth,
             user: { id: user.id, username: user.username },
           },
+          loggedIn: true
         });
       });
     }
