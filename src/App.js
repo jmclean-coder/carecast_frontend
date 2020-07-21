@@ -73,7 +73,7 @@ export default class App extends React.Component {
     api.user.fetchUserData(id)
     .then(res =>{
       const {full_name, user_name, journal_entries, list_items, feelings, user_ratings} = res.data.attributes
-      console.log(full_name, user_name, journal_entries, list_items, feelings, user_ratings)
+      
       this.setState({
         userData: {
           ...this.state.userData,
