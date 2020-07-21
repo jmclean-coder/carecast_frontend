@@ -1,6 +1,6 @@
 import React from 'react';
-
-export default class ListPage extends React.Component{
+import PrivacyHOC from '../HOCs/PrivacyHOC'
+ class ListPage extends React.Component{
 
     render(){
         return(
@@ -12,3 +12,4 @@ export default class ListPage extends React.Component{
     )
 }
 }
+export default PrivacyHOC(ListPage)
