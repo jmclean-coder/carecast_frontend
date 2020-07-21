@@ -8,7 +8,7 @@ import ListPage from "./containers/ListPage";
 import SignupPage from "./containers/SignupPage";
 
 import HomeNavBar from "./components/homepage/HomeNavBar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { api } from "./services/api";
 
 export default class App extends React.Component {
@@ -57,40 +57,42 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Router>
+          <Switch>
           <HomeNavBar onLogout={this.logout}/>
           <Route exact path="/" component={HomePage} />
           <Route
             exact
             path="/signup"
             render={(routerProps) => <SignupPage {...routerProps} />}
-          />
+            />
           <Route
             exact
             path="/login"
             render={(routerProps) => (
               <LoginPage {...routerProps} onLogin={this.login} />
-            )}
-          />
+              )}
+              />
           <Route
             exact
             path="/dashboard"
             render={(routerProps) => <DashboardPage {...routerProps} />}
-          />
+            />
           <Route
             exact
             path="/journals"
             render={(routerProps) => <JournalPage {...routerProps} />}
-          />
+            />
           <Route
             exact
             path="/feeling_tracker"
             render={(routerProps) => <FeelingPage {...routerProps} />}
-          />
+            />
           <Route
             exact
             path="/todos"
             render={(routerProps) => <ListPage {...routerProps} />}
-          />
+            />
+            </Switch>
         </Router>
       </div>
     );
