@@ -19,6 +19,7 @@ export default class App extends React.Component {
   };
   //each time a component mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
+    console.log("Hi from CDM!")
     const token = localStorage.getItem("token");
     if (token) {
       api.auth.getCurrentUser().then((user) => {
@@ -45,13 +46,18 @@ export default class App extends React.Component {
     });
   };
 
-  logout = () => {};
+  logout = () => {
+    localStorage.removeItem("token")
+    this.setState({
+      auth:{user:{}}
+    })
+  };
 
   render() {
     return (
       <div className="App">
         <Router>
-          <HomeNavBar />
+          <HomeNavBar onLogout={this.logout}/>
           <Route exact path="/" component={HomePage} />
           <Route
             exact
