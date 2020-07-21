@@ -4,7 +4,12 @@ import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
 
 
-export default function HomeNavBar() {
+export default function HomeNavBar(props) {
+const token = localStorage.getItem("token");
+
+const handleLogout = () => props.onLogout()
+
+
   return (
     <Navbar bg="light" expand="lg">
       <LinkContainer to="/">
@@ -13,9 +18,7 @@ export default function HomeNavBar() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <LinkContainer to="login" >
-            <Nav.Link>Login</Nav.Link>
-          </LinkContainer>
+          {token ? <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>: <LinkContainer to="login" ><Nav.Link>Login</Nav.Link></LinkContainer>}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
