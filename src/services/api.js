@@ -61,6 +61,20 @@ const patchRating = data => {
         })
     })
 }
+const fetchFeelings = () =>{
+    return fetch(`${API_ROOT}/feelings`, {
+        headers: headers()
+    })
+    .then(res => res.json())
+}
+const postUserFeeling = feeling =>{
+    return fetch(`${API_ROOT}/user_feelings`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(feeling)
+    })
+.then(res => res.json())
+}
 
 export const api ={
     auth: {
@@ -77,5 +91,9 @@ export const api ={
     },
     patch:{
         patchRating,
+    },
+    feelings:{
+        fetchFeelings,
+        postUserFeeling,
     }
 }

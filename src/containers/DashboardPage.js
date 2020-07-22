@@ -25,7 +25,7 @@ class DashboardPage extends React.Component {
         {fullName ? <h1>Hello {`${fullName}`}</h1> : <h1>Hello!</h1>}
         <Container>
         <DailyTrackerAccordion categories={this.props.categories} trackerData={this.props.userData.userRatings} incrementRating={this.props.incrementRating} decrementRating={this.props.decrementRating}/>
-        <MoodAccordion feelings={this.props.userData.feelings}/>
+        <MoodAccordion feelings={this.props.feelings} userFeelings={this.props.userData.feelings} addFeeling={this.props.addFeeling}/>
         </Container>
       </div>
     );

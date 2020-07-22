@@ -8,7 +8,7 @@ import ListPage from "./containers/ListPage";
 import SignupPage from "./containers/SignupPage";
 
 import HomeNavBar from "./components/homepage/HomeNavBar";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { api } from "./services/api";
 
 export default class App extends React.Component {
@@ -25,6 +25,7 @@ export default class App extends React.Component {
       todos: [],
     },
     categories: [],
+    feelings: []
   };
   //each time a component mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
@@ -41,6 +42,7 @@ export default class App extends React.Component {
         });
         this.getUserData(user.id);
         this.getCategories();
+        this.getFeelings();
       });
     }
   }
@@ -95,17 +97,38 @@ export default class App extends React.Component {
 
   getCategories = () => {
     api.categories.fetchCategories().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.setState({
         categories: res,
       });
     });
   };
 
-  updateRating = (updatedRating, id) => {
-    console.log(updatedRating, id);
-    // api.patch
+  getFeelings = () => {
+    api.feelings.fetchFeelings().then((res) => {
+      // console.log(res);
+      this.setState({
+        feelings: res,
+      });
+    });
   };
+  
+
+  addFeeling = (feeling) => {
+    console.log(feeling[0]);
+    api.feelings.postUserFeeling(feeling[0])
+    .then(resFeeling => {
+      this.setState((prevState) => ({
+        userData: {
+          ...prevState.userData,
+          feelings: [...prevState.userData.feelings, resFeeling]
+        }
+      }))
+    })
+    
+  };
+
+
 
   incrementRating = (rating) => {
     console.log(rating, rating.id);
@@ -140,7 +163,7 @@ export default class App extends React.Component {
         <Router>
           <HomeNavBar onLogout={this.logout} />
           <Switch>
-            <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
             <Route
               exact
               path="/signup"
@@ -166,6 +189,8 @@ export default class App extends React.Component {
                   categories={this.state.categories}
                   incrementRating={this.incrementRating}
                   decrementRating={this.decrementRating}
+                  feelings={this.state.feelings}
+                  addFeeling={this.addFeeling}
                 />
               )}
             />
@@ -188,6 +213,7 @@ export default class App extends React.Component {
                   {...routerProps}
                   loggedIn={this.state.auth.loggedIn}
                   userFeelings={this.state.userData.feelings}
+                  feelings={this.state.feelings}
                 />
               )}
             />

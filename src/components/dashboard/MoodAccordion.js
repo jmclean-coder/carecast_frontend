@@ -6,14 +6,18 @@ import {
     Button,
   } from "react-bootstrap";
   import MoodCard from './MoodCard'
+  import MoodModal from './MoodModal'
   import { ReactComponent as Plus } from "../../assets/BookPlus.svg";
   import {Link} from 'react-router-dom'
 export default function MoodAccordion(props) {
 
     const renderMoodCards = () =>{
-        return props.feelings.map(feeling => <MoodCard feeling={feeling} key={`feeling_${feeling.id}`}/>)
+        return props.userFeelings.map(feeling => <MoodCard feeling={feeling} key={`feeling_${feeling.id}`}/>)
 
     }
+    // const buildFeelingsList = () =>{
+    //     return props.feelings.map(feeling => {feeling.name})
+    // }
 
     return (
         <Accordion defaultActiveKey="0">
@@ -23,7 +27,7 @@ export default function MoodAccordion(props) {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
         <Container>
-        <Plus as={Button} /> 
+        <MoodModal feelings={props.feelings} addFeeling={props.addFeeling}/> 
         <Button variant="link" as={Link} to="/feeling_tracker">See More</Button>
             {renderMoodCards()}
             </Container>
