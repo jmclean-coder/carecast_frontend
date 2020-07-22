@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Image, Button} from "react-bootstrap";
+import { Container, Card} from "react-bootstrap";
 import { ReactComponent as Smile } from "../../assets/smile.svg";
 import { ReactComponent as Frown } from "../../assets/smileFrown.svg";
 export default function MoodCard(props) {

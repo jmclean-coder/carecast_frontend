@@ -8,6 +8,8 @@ import {
 
 import DailyTrackerAccordion from "../components/dashboard/DailyTrackerAccordion"
 import MoodAccordion from '../components/dashboard/MoodAccordion'
+import JournalAccordion from '../components/dashboard/JournalAccordion'
+
 
 class DashboardPage extends React.Component {
   render() {
@@ -24,8 +26,9 @@ class DashboardPage extends React.Component {
       <div>
         {fullName ? <h1>Hello {`${fullName}`}</h1> : <h1>Hello!</h1>}
         <Container>
-        <DailyTrackerAccordion categories={this.props.categories} trackerData={this.props.userData.userRatings} incrementRating={this.props.incrementRating} decrementRating={this.props.decrementRating}/>
-        <MoodAccordion feelings={this.props.feelings} userFeelings={this.props.userData.feelings} addFeeling={this.props.addFeeling}/>
+        <DailyTrackerAccordion categories={this.props.categories} trackerData={userRatings} incrementRating={this.props.incrementRating} decrementRating={this.props.decrementRating}/>
+        <MoodAccordion feelings={this.props.feelings} userFeelings={feelings} addFeeling={this.props.addFeeling}/>
+      <JournalAccordion journalEntries={journalEntries} addJournalEntry={this.props.addJournalEntry}/>
         </Container>
       </div>
     );

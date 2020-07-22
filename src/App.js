@@ -21,8 +21,9 @@ export default class App extends React.Component {
       fullName: "",
       userRatings: [],
       feelings: [],
-      journalEntries: [],
       todos: [],
+      journalEntries: [],
+      selectedJournal: []
     },
     categories: [],
     feelings: []
@@ -128,6 +129,22 @@ export default class App extends React.Component {
     
   };
 
+  addJournalEntry = (entry) =>{
+    // console.log(entry)
+    let editedEntry = {...entry, user_id: this.state.auth.user.id}
+    // console.log(editedEntry)
+    api.journals.postUserJournal(editedEntry)
+    .then(res => {
+      let resJournal = res.data.attributes
+      this.setState(prevState => ({
+        userData:{
+          ...prevState.userData,
+          journalEntries: [...prevState.userData.journalEntries, resJournal]
+        }
+      }))
+    })
+  }
+
 
 
   incrementRating = (rating) => {
@@ -191,6 +208,7 @@ export default class App extends React.Component {
                   decrementRating={this.decrementRating}
                   feelings={this.state.feelings}
                   addFeeling={this.addFeeling}
+                  addJournalEntry={this.addJournalEntry}
                 />
               )}
             />

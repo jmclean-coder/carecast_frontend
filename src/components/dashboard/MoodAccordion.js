@@ -7,7 +7,6 @@ import {
   } from "react-bootstrap";
   import MoodCard from './MoodCard'
   import MoodModal from './MoodModal'
-  import { ReactComponent as Plus } from "../../assets/BookPlus.svg";
   import {Link} from 'react-router-dom'
 export default function MoodAccordion(props) {
 

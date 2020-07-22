@@ -75,6 +75,14 @@ const postUserFeeling = feeling =>{
     })
 .then(res => res.json())
 }
+const postUserJournal = data => {
+    return fetch(`${API_ROOT}/journal_entries`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+}
 
 export const api ={
     auth: {
@@ -95,5 +103,8 @@ export const api ={
     feelings:{
         fetchFeelings,
         postUserFeeling,
+    },
+    journals:{
+        postUserJournal,
     }
 }
