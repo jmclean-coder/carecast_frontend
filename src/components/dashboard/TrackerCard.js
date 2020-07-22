@@ -32,6 +32,7 @@ export default function TrackerCard(props) {
   // };
   // console.log(rating)
   return props.category.detailed ? (
+    <Card>
     <Card.Body>
       <Card.Title>{props.category.name}</Card.Title>
 
@@ -49,7 +50,9 @@ export default function TrackerCard(props) {
       </Container>
 
     </Card.Body>
+    </Card>
   ) : (
+    <Card>
     <Card.Body>
       <Card.Title>{props.category.name}</Card.Title>
   
@@ -66,5 +69,6 @@ export default function TrackerCard(props) {
         <Minus as={Button} />
       </Container>
     </Card.Body>
+    </Card>
   );
 }
