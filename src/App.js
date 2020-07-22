@@ -24,7 +24,8 @@ export default class App extends React.Component {
       journalEntries:[],
       todos:[],
 
-    }
+    },
+    categories:[]
   };
   //each time a component mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
@@ -40,6 +41,7 @@ export default class App extends React.Component {
           },
         });
         this.getUserData(user.id)
+        this.getCategories()
       }); 
       
     }
@@ -87,6 +89,44 @@ export default class App extends React.Component {
     }
   )
 }
+
+getCategories = () =>{
+  api.categories.fetchCategories()
+  .then(res => {
+    console.log(res)
+    this.setState({
+      categories: res
+    })
+  })
+}
+
+updateRating = (updatedRating, id) => {
+  console.log(updatedRating, id)
+  // api.patch
+}
+
+incrementRating = (rating) =>{
+  console.log(rating, rating.id) 
+
+  this.setState(prevState => ({
+    userData: {
+      ...prevState.userData,
+      userRatings: prevState.userData.userRatings.map(userRating => userRating.id === rating.id ? {...userRating, rating: userRating.rating + 1 } : userRating )
+    }
+  }))
+  
+
+}
+decrementRating = (rating) =>{
+  console.log(rating)
+  this.setState(prevState => ({
+    userData: {
+      ...prevState.userData,
+      userRatings: prevState.userData.userRatings.map(userRating => userRating.id === rating.id ? {...userRating, rating: userRating.rating - 1 } : userRating )
+    }
+  }))
+
+}
   render() {
     return (
       <div className="App">
@@ -109,7 +149,7 @@ export default class App extends React.Component {
           <Route
             exact
             path="/dashboard"
-            render={(routerProps) => <DashboardPage {...routerProps} loggedIn={this.state.auth.loggedIn} userData={this.state.userData}/>}
+            render={(routerProps) => <DashboardPage {...routerProps} loggedIn={this.state.auth.loggedIn} userData={this.state.userData} categories={this.state.categories} incrementRating={this.incrementRating} decrementRating={this.decrementRating}/>}
             />
           <Route
             exact

@@ -45,6 +45,22 @@ const fetchUserData = id => {
     .then(res => res.json())
 
 }
+const fetchCategories = () =>{
+    return fetch(`${API_ROOT}/categories`,{
+        headers: headers()
+    })
+    .then(res => res.json())
+}
+
+const patchRating = data => {
+    return fetch(`${API_ROOT}/user_ratings/${data.id}`, {
+        method: "PATCH",
+        headers: headers(),
+        body: JSON.stringify({
+            rating: data.rating
+        })
+    })
+}
 
 export const api ={
     auth: {
@@ -54,5 +70,12 @@ export const api ={
     user:{
         createNewUser,
         fetchUserData,
+        
+    },
+    categories:{
+        fetchCategories
+    },
+    patch:{
+        patchRating,
     }
 }
