@@ -5,9 +5,6 @@ import {
   Col,
   Accordion,
   Card,
-  ListGroup,
-  Button,
-  Image,
 } from "react-bootstrap";
 import TrackerCard from "./TrackerCard";
 export default function DailyTrackerAccordion(props) {
