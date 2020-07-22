@@ -15,21 +15,20 @@ export default class App extends React.Component {
   state = {
     auth: {
       user: {},
-      loggedIn: false
+      loggedIn: false,
     },
-    userData:{
-      fullName:"",
-      userRatings:[],
+    userData: {
+      fullName: "",
+      userRatings: [],
       feelings: [],
-      journalEntries:[],
-      todos:[],
-
+      journalEntries: [],
+      todos: [],
     },
-    categories:[]
+    categories: [],
   };
   //each time a component mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
-    console.log("Hi from CDM!")
+    console.log("Hi from CDM!");
     const token = localStorage.getItem("token");
     if (token) {
       api.auth.getCurrentUser().then((user) => {
@@ -37,13 +36,12 @@ export default class App extends React.Component {
           auth: {
             ...this.state.auth,
             user: { id: user.id, username: user.username },
-            loggedIn: true
+            loggedIn: true,
           },
         });
-        this.getUserData(user.id)
-        this.getCategories()
-      }); 
-      
+        this.getUserData(user.id);
+        this.getCategories();
+      });
     }
   }
 
@@ -57,116 +55,154 @@ export default class App extends React.Component {
       auth: {
         ...this.state.auth,
         user: { id: data.id, username: data.username },
-        loggedIn: true
+        loggedIn: true,
       },
     });
-    this.getUserData(data.id)
+    this.getUserData(data.id);
   };
 
   logout = () => {
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
     this.setState({
-      auth:{user:{}, loggedIn: false}
-    })
+      auth: { user: {}, loggedIn: false },
+    });
   };
 
-  getUserData = id =>{
+  getUserData = (id) => {
     // console.log(id)
-    api.user.fetchUserData(id)
-    .then(res =>{
-      const {full_name, user_name, journal_entries, list_items, feelings, user_ratings} = res.data.attributes
-      
+    api.user.fetchUserData(id).then((res) => {
+      const {
+        full_name,
+        user_name,
+        journal_entries,
+        list_items,
+        feelings,
+        user_ratings,
+      } = res.data.attributes;
+
       this.setState({
         userData: {
           ...this.state.userData,
           fullName: full_name,
-          userRatings:[...user_ratings],
+          userRatings: [...user_ratings],
           feelings: [...feelings],
-          journalEntries:[...journal_entries],
-          todos:[...list_items],
+          journalEntries: [...journal_entries],
+          todos: [...list_items],
         },
       });
-    }
-  )
-}
+    });
+  };
 
-getCategories = () =>{
-  api.categories.fetchCategories()
-  .then(res => {
-    console.log(res)
-    this.setState({
-      categories: res
-    })
-  })
-}
+  getCategories = () => {
+    api.categories.fetchCategories().then((res) => {
+      console.log(res);
+      this.setState({
+        categories: res,
+      });
+    });
+  };
 
-updateRating = (updatedRating, id) => {
-  console.log(updatedRating, id)
-  // api.patch
-}
+  updateRating = (updatedRating, id) => {
+    console.log(updatedRating, id);
+    // api.patch
+  };
 
-incrementRating = (rating) =>{
-  console.log(rating, rating.id) 
+  incrementRating = (rating) => {
+    console.log(rating, rating.id);
 
-  this.setState(prevState => ({
-    userData: {
-      ...prevState.userData,
-      userRatings: prevState.userData.userRatings.map(userRating => userRating.id === rating.id ? {...userRating, rating: userRating.rating + 1 } : userRating )
-    }
-  }))
-  
-
-}
-decrementRating = (rating) =>{
-  console.log(rating)
-  this.setState(prevState => ({
-    userData: {
-      ...prevState.userData,
-      userRatings: prevState.userData.userRatings.map(userRating => userRating.id === rating.id ? {...userRating, rating: userRating.rating - 1 } : userRating )
-    }
-  }))
-
-}
+    this.setState((prevState) => ({
+      userData: {
+        ...prevState.userData,
+        userRatings: prevState.userData.userRatings.map((userRating) =>
+          userRating.id === rating.id
+            ? { ...userRating, rating: userRating.rating + 1 }
+            : userRating
+        ),
+      },
+    }));
+  };
+  decrementRating = (rating) => {
+    console.log(rating);
+    this.setState((prevState) => ({
+      userData: {
+        ...prevState.userData,
+        userRatings: prevState.userData.userRatings.map((userRating) =>
+          userRating.id === rating.id
+            ? { ...userRating, rating: userRating.rating - 1 }
+            : userRating
+        ),
+      },
+    }));
+  };
   render() {
     return (
       <div className="App">
-         <Router>
-          <HomeNavBar onLogout={this.logout}/>
+        <Router>
+          <HomeNavBar onLogout={this.logout} />
           <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route
-            exact
-            path="/signup"
-            render={(routerProps) => <SignupPage {...routerProps} onLogin={this.login}/>}
-            />
-          <Route
-            exact
-            path="/login"
-            render={(routerProps) => (
-              <LoginPage {...routerProps} onLogin={this.login} />
+            <Route exact path="/" component={HomePage} />
+            <Route
+              exact
+              path="/signup"
+              render={(routerProps) => (
+                <SignupPage {...routerProps} onLogin={this.login} />
               )}
-              />
-          <Route
-            exact
-            path="/dashboard"
-            render={(routerProps) => <DashboardPage {...routerProps} loggedIn={this.state.auth.loggedIn} userData={this.state.userData} categories={this.state.categories} incrementRating={this.incrementRating} decrementRating={this.decrementRating}/>}
             />
-          <Route
-            exact
-            path="/journal"
-            render={(routerProps) => <JournalPage {...routerProps} loggedIn={this.state.auth.loggedIn} userJournalEntries={this.state.userData.journalEntries}/>}
+            <Route
+              exact
+              path="/login"
+              render={(routerProps) => (
+                <LoginPage {...routerProps} onLogin={this.login} />
+              )}
             />
-          <Route
-            exact
-            path="/feeling_tracker"
-            render={(routerProps) => <FeelingPage {...routerProps} loggedIn={this.state.auth.loggedIn} userFeelings={this.state.userData.feelings}/>}
+            <Route
+              exact
+              path="/dashboard"
+              render={(routerProps) => (
+                <DashboardPage
+                  {...routerProps}
+                  loggedIn={this.state.auth.loggedIn}
+                  userData={this.state.userData}
+                  categories={this.state.categories}
+                  incrementRating={this.incrementRating}
+                  decrementRating={this.decrementRating}
+                />
+              )}
             />
-          <Route
-            exact
-            path="/todos"
-            render={(routerProps) => <ListPage {...routerProps} loggedIn={this.state.auth.loggedIn} userTodos={this.state.userData.todos}/>}
+            <Route
+              exact
+              path="/journal"
+              render={(routerProps) => (
+                <JournalPage
+                  {...routerProps}
+                  loggedIn={this.state.auth.loggedIn}
+                  userJournalEntries={this.state.userData.journalEntries}
+                />
+              )}
             />
-            </Switch>
+            <Route
+              exact
+              path="/feeling_tracker"
+              render={(routerProps) => (
+                <FeelingPage
+                  {...routerProps}
+                  loggedIn={this.state.auth.loggedIn}
+                  userFeelings={this.state.userData.feelings}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/todos"
+              render={(routerProps) => (
+                <ListPage
+                  {...routerProps}
+                  loggedIn={this.state.auth.loggedIn}
+                  userTodos={this.state.userData.todos}
+                />
+              )}
+            />
+          </Switch>
         </Router>
       </div>
     );
