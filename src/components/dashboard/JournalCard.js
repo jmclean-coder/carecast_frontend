@@ -1,14 +1,41 @@
 import React from 'react'
-import { Container, Card} from "react-bootstrap";
-export default function JournalCard(props) {
-    return (
-        <Card>
+import { Container, Card, Modal} from "react-bootstrap";
+import JournalModal from '../dashboard/JournalModal'
+import { ReactComponent as Meatball } from "../../assets/Ellipsis 40px.svg";
+export default class JournalCard extends React.Component {
+  state = {
+    show: false,
+  };
+
+  handleClose = () => this.setState({ show: false });
+  handleShow = () => this.setState({ show: true });
+
+  // handleChange = (e) => {
+  //   const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
+  //   this.setState({
+  //     fields: newFields,
+  //   });
+  // }
+render(){
+
+  return (
+    <>
+        <Card style={{width: "336px",
+          height: "254px"}} >
+          <Card.Header >
+          {this.props.journal ? <Meatball  onClick={()=>this.handleShow()}></Meatball>: null}
+            </Card.Header>
           <Card.Body>
-                <Card.Title className="text-center">{props.journal.title}</Card.Title>
+                <Card.Title className="text-center">{this.props.journal.title}</Card.Title>
             <Container>
-              <Card.Text>{props.journal.content}</Card.Text>
+              <Card.Text>{this.props.journal.content}</Card.Text>
             </Container>
           </Card.Body>
         </Card>
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <JournalModal handleClose={this.handleClose} journal={this.props.journal} addJournalEntry={this.props.addJournalEntry} updateJournalEntry={this.props.updateJournalEntry}> </JournalModal>
+            </Modal>
+        </>
     )
+  }
 }

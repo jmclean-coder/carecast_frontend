@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom'
-import { ReactComponent as Plus } from "../../assets/BookPlus.svg";
 import JournalCard from './JournalCard'
-import JournalModal from './JournalModal'
 import {
     Container,
     Accordion,
@@ -14,7 +12,7 @@ import {
   
   export default function JournalAccordion(props) {
       const renderJournalEntries = () =>{
-          return props.journalEntries.map(journal => <JournalCard journal={journal} key={`journal_${journal.id}`} />)
+          return props.journalEntries.map(entry=> <JournalCard updateJournalEntry={props.updateJournalEntry} addJournalEntry={props.addJournalEntry} journal={entry} key={`entry_${entry.id}`} />)
       }
   return (
     <Accordion defaultActiveKey="3">
@@ -24,12 +22,11 @@ import {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="3">
           <Container>
-            <JournalModal
-              addJournalEntry={props.addJournalEntry}
-            />
-            <Button variant="link" as={Link} to="/journal">
+            <Container className="text-right">
+            <Button  variant="link" as={Link} to="/journal">
               See More
             </Button>
+            </Container>
          {renderJournalEntries()}
           </Container>
         </Accordion.Collapse>
