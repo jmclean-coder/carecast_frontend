@@ -1,4 +1,5 @@
 const API_ROOT = `http://localhost:3000/api/v1`;
+const QUOTES_API =  `https://quotes.rest/qod?category=students&language=en`
 const token = () => localStorage.getItem("token");
 
 
@@ -83,6 +84,23 @@ const postUserJournal = data => {
     })
     .then(res => res.json())
 }
+const fetchAffirmations = () =>{
+    return fetch(QUOTES_API)
+    .then(res => res.json())
+}
+const patchJournal = (data, id) =>{
+    console.log(data,id)
+    return fetch(`${API_ROOT}/journal_entries/${id}`, {
+        method: "PATCH",
+        headers: headers(),
+        body: JSON.stringify({
+            title: data.title,
+            content: data.content,
+            user_id: data.user_id
+        })
+    })
+    .then(res=> res.json())
+}
 
 export const api ={
     auth: {
@@ -99,6 +117,7 @@ export const api ={
     },
     patch:{
         patchRating,
+        patchJournal,
     },
     feelings:{
         fetchFeelings,
@@ -106,5 +125,8 @@ export const api ={
     },
     journals:{
         postUserJournal,
+    },
+    affirmations:{
+        fetchAffirmations,
     }
 }
