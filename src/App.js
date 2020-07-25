@@ -26,7 +26,9 @@ export default class App extends React.Component {
       selectedJournal: []
     },
     categories: [],
-    feelings: []
+    feelings: [],
+    quotes:[],
+    
   };
   //each time a component mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
@@ -44,6 +46,7 @@ export default class App extends React.Component {
         this.getUserData(user.id);
         this.getCategories();
         this.getFeelings();
+        this.getQuotes()
       });
     }
   }
@@ -113,6 +116,15 @@ export default class App extends React.Component {
       });
     });
   };
+  getQuotes =() =>{
+    api.affirmations.fetchAffirmations()
+    .then(res => {
+      this.setState({
+        quotes: res
+      })
+    })
+  
+  }
   
 
   addFeeling = (feeling) => {
@@ -140,6 +152,25 @@ export default class App extends React.Component {
         userData:{
           ...prevState.userData,
           journalEntries: [...prevState.userData.journalEntries, resJournal]
+        }
+      }))
+    })
+  }
+
+  updateJournalEntry = (entry, id) =>{
+    console.log(entry, id)
+    let editedEntry = {...entry, user_id: this.state.auth.user.id}
+    console.log(editedEntry)
+    api.patch.patchJournal(editedEntry, id)
+    .then(res => {
+      console.log(res)
+      let resJournal = res.data.attributes
+      this.setState(prevState => ({
+        userData:{
+          ...prevState.userData,
+          journalEntries: prevState.userData.journalEntries.map(journalEntry => {
+            return journalEntry.id === resJournal.id ? resJournal : journalEntry
+          })
         }
       }))
     })
@@ -209,6 +240,8 @@ export default class App extends React.Component {
                   feelings={this.state.feelings}
                   addFeeling={this.addFeeling}
                   addJournalEntry={this.addJournalEntry}
+                  updateJournalEntry = {this.updateJournalEntry}
+                  quoteOfDay={this.state.quotes}
                 />
               )}
             />
@@ -220,6 +253,8 @@ export default class App extends React.Component {
                   {...routerProps}
                   loggedIn={this.state.auth.loggedIn}
                   userJournalEntries={this.state.userData.journalEntries}
+                  updateJournalEntry = {this.updateJournalEntry}
+                  addJournalEntry = {this.addJournalEntry}
                 />
               )}
             />
