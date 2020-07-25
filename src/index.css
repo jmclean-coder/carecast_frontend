@@ -4,3 +4,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#day-wrapper{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 8px;
+  width: 351px;
+}
+
+.cell{
+  background-color: aquamarine;
+  height: 42px;
+  width: 42px;
+  border-radius: 6.5px;
+}
+.cell.red{
+  background-color: red;
+}
+.cell.green{
+  background-color: g;
+}
