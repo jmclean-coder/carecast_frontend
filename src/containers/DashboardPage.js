@@ -23,15 +23,13 @@ class DashboardPage extends React.Component {
       feelings,
       userRatings,
     } = this.props.userData;
-
     
-
     return (
       <div>
         {fullName ? <h1 className="text-center">Hello {`${fullName.split(' ')[0]}`} </h1> : <h1 className="text-center">Hello!</h1>}
           <DailyAffirmations quoteOfDay={this.props.quoteOfDay}/>
         <Container>
-        <DailyTrackerAccordion categories={this.props.categories} trackerData={userRatings} incrementRating={this.props.incrementRating} decrementRating={this.props.decrementRating}/>
+        <DailyTrackerAccordion categories={this.props.categories} userRatings={userRatings} incrementRating={this.props.incrementRating} decrementRating={this.props.decrementRating}/>
         <MoodAccordion feelings={this.props.feelings} userFeelings={feelings} addFeeling={this.props.addFeeling}/>
         <JournalAccordion journalEntries={journalEntries} addJournalEntry={this.props.addJournalEntry} updateJournalEntry={this.props.updateJournalEntry}/>
         </Container>
