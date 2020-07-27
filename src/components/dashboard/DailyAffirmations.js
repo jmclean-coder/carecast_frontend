@@ -3,7 +3,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 export default function DailyAffirmations(props) {
   return (
     <Jumbotron fluid>
-        {console.log(props)}
     <blockquote className="blockquote mb-0">
       <h2>
         {' '}{props.quoteOfDay.contents.quotes[0].quote}{' '}
