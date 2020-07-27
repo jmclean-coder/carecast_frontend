@@ -24,9 +24,9 @@ class JournalPage extends React.Component {
   render() {
     return (
       <div>
-        {/* <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.state.show} onHide={this.handleClose}>
           <JournalModal addJournalEntry={this.props.addJournalEntry} handleClose={this.handleClose}></JournalModal>
-      </Modal> */}
+      </Modal>
         <h1 className="text-center">Journal Entries</h1>
         <Container className="text-center">
           <Button onClick={this.handleShow}>Add a new entry</Button>
