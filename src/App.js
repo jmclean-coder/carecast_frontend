@@ -212,38 +212,35 @@ export default class App extends React.Component {
     });
   };
 
-  getTodaysRatings = () => {
-    this.state.userData.userRatings.map(rating => {
-      
-    })
-  }
-
   incrementRating = (rating) => {
     console.log(rating, rating.id);
-
-    this.setState((prevState) => ({
-      userData: {
-        ...prevState.userData,
-        userRatings: prevState.userData.userRatings.map((userRating) =>
+    if(rating.rating < 10){
+      this.setState((prevState) => ({
+        userData: {
+          ...prevState.userData,
+          todaysRatings: prevState.userData.todaysRatings.map((userRating) =>
           userRating.id === rating.id
-            ? { ...userRating, rating: userRating.rating + 1 }
-            : userRating
-        ),
-      },
-    }));
+          ? { ...userRating, rating: userRating.rating + 1 }
+          : userRating
+          ),
+        },
+      }));
+    }
   };
   decrementRating = (rating) => {
     console.log(rating);
-    this.setState((prevState) => ({
-      userData: {
-        ...prevState.userData,
-        userRatings: prevState.userData.userRatings.map((userRating) =>
+    if(rating.rating > 0){
+      this.setState((prevState) => ({
+        userData: {
+          ...prevState.userData,
+          todaysRatings: prevState.userData.todaysRatings.map((userRating) =>
           userRating.id === rating.id
-            ? { ...userRating, rating: userRating.rating - 1 }
-            : userRating
-        ),
-      },
-    }));
+          ? { ...userRating, rating: userRating.rating - 1 }
+          : userRating
+          ),
+        },
+      }));
+    }
   };
   render() {
     return (
