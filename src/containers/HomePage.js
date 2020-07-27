@@ -15,12 +15,10 @@ function HomePage() {
       <Card.Text>
         Give yourself the gift of care today.
       </Card.Text>
-      <Link to="/signup">
-      <Button variant="primary">Signup</Button>
-      </Link>
+      <Button as={Link} to="/signup" variant="primary">Signup</Button>
     </Card.Body>
   </Card>
-<br></br>
+
 <CardDeck>
 <Card>
   <div className="text-center">
@@ -59,7 +57,6 @@ function HomePage() {
   </Card.Body>
 </Card>
 </CardDeck>
-  <br></br>
 
 
 <Card.Footer>
