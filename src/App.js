@@ -5,11 +5,23 @@ import DashboardPage from "./containers/DashboardPage";
 import JournalPage from "./containers/JournalPage";
 import FeelingPage from "./containers/FeelingPage";
 import ListPage from "./containers/ListPage";
-import SignupPage from "./containers/SignupPage";
-
+import SignupPage from "./containers/SignupPage"
 import HomeNavBar from "./components/homepage/HomeNavBar";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import LoaderHOC from "./HOCs/LoaderHOC"
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import { api } from "./services/api";
+const DashboardWithLoading = LoaderHOC(DashboardPage)
+const JournalWithLoading = LoaderHOC(JournalPage)
+const FeelingWithLoading = LoaderHOC(FeelingPage)
+const ListWithLoading = LoaderHOC(ListPage)
+
+
+
 
 export default class App extends React.Component {
   state = {
@@ -17,22 +29,15 @@ export default class App extends React.Component {
       user: {},
       loggedIn: false,
     },
-    userData: {
-      fullName: "",
-      userRatings: [],
-      feelings: [],
-      todos: [],
-      journalEntries: [],
-      selectedJournal: []
-    },
+    userData: {},
     categories: [],
     feelings: [],
-    quotes:[],
-    
+    quotes: [],
+    loading: false 
   };
-  //each time a component mounts checks to see if authorized to access so you don't have to login again
+  //each time app mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
-    console.log("Hi from CDM!");
+    this.setState({ loading: true });
     const token = localStorage.getItem("token");
     if (token) {
       api.auth.getCurrentUser().then((user) => {
@@ -46,16 +51,15 @@ export default class App extends React.Component {
         this.getUserData(user.id);
         this.getCategories();
         this.getFeelings();
-        this.getQuotes()
-      });
+        this.getQuotes();
+      })
     }
+    console.log(this.state, 1)
+    this.setState({ loading: false });
   }
 
-  //initial login, user is who they say they are authentication. set's token
-  login = (data) => {
-    // user data and token from fetch in api
-    // console.log(data);
-    //setting token in localstorage
+  signup = (data) => {
+    console.log(this.state, 2)
     localStorage.setItem("token", data.jwt);
     this.setState({
       auth: {
@@ -63,40 +67,74 @@ export default class App extends React.Component {
         user: { id: data.id, username: data.username },
         loggedIn: true,
       },
+      loading: true
     });
     this.getUserData(data.id);
+    this.getCategories();
+    this.getFeelings();
+    this.getQuotes();
+  };
+
+  //initial login, user is who they say they are authentication. set's token
+  login = (data) => {
+    // user data and token from fetch in api
+    // console.log(data);
+    //setting token in localstorage
+    console.log(this.state, 3)
+    localStorage.setItem("token", data.jwt);
+    this.setState({
+      auth: {
+        ...this.state.auth,
+        user: { id: data.id, username: data.username },
+        loggedIn: true,
+      },
+      loading: true
+    });
+    this.getUserData(data.id);
+    this.getCategories();
+    this.getFeelings();
+    this.getQuotes();
   };
 
   logout = () => {
     localStorage.removeItem("token");
     this.setState({
       auth: { user: {}, loggedIn: false },
+      userData: {},
+      categories: [],
+      feelings: [],
+      quotes: [],
     });
   };
 
   getUserData = (id) => {
-    // console.log(id)
-    api.user.fetchUserData(id).then((res) => {
+
+    api.user.fetchUserData(id)
+    
+    .then((res) => {
+      // console.log(res)
       const {
         full_name,
-        user_name,
         journal_entries,
         list_items,
         feelings,
         user_ratings,
+        todays_user_ratings,
       } = res.data.attributes;
-
       this.setState({
         userData: {
           ...this.state.userData,
           fullName: full_name,
           userRatings: [...user_ratings],
+          todaysRatings: [...todays_user_ratings],
           feelings: [...feelings],
           journalEntries: [...journal_entries],
           todos: [...list_items],
         },
+        loading: false
       });
     });
+    console.log(this.state, 4)
   };
 
   getCategories = () => {
@@ -116,67 +154,69 @@ export default class App extends React.Component {
       });
     });
   };
-  getQuotes =() =>{
-    api.affirmations.fetchAffirmations()
-    .then(res => {
+
+  getQuotes = () => {
+    api.affirmations.fetchAffirmations().then((res) => {
       this.setState({
-        quotes: res
-      })
-    })
-  
-  }
-  
+        quotes: res,
+      });
+    });
+  };
 
   addFeeling = (feeling) => {
     console.log(feeling[0]);
-    api.feelings.postUserFeeling(feeling[0])
-    .then(resFeeling => {
+    api.feelings.postUserFeeling(feeling[0]).then((resFeeling) => {
       this.setState((prevState) => ({
         userData: {
           ...prevState.userData,
-          feelings: [...prevState.userData.feelings, resFeeling]
-        }
-      }))
-    })
-    
+          feelings: [...prevState.userData.feelings, resFeeling],
+        },
+      }));
+    });
   };
 
-  addJournalEntry = (entry) =>{
+  addJournalEntry = (entry) => {
     // console.log(entry)
-    let editedEntry = {...entry, user_id: this.state.auth.user.id}
+    let editedEntry = { ...entry, user_id: this.state.auth.user.id };
     // console.log(editedEntry)
-    api.journals.postUserJournal(editedEntry)
-    .then(res => {
-      let resJournal = res.data.attributes
-      this.setState(prevState => ({
-        userData:{
+    api.journals.postUserJournal(editedEntry).then((res) => {
+      let resJournal = res.data.attributes;
+      this.setState((prevState) => ({
+        userData: {
           ...prevState.userData,
-          journalEntries: [...prevState.userData.journalEntries, resJournal]
-        }
-      }))
+          journalEntries: [...prevState.userData.journalEntries, resJournal],
+        },
+      }));
+    });
+  };
+
+  updateJournalEntry = (entry, id) => {
+    console.log(entry, id);
+    let editedEntry = { ...entry, user_id: this.state.auth.user.id };
+    console.log(editedEntry);
+    api.patch.patchJournal(editedEntry, id).then((res) => {
+      console.log(res);
+      let resJournal = res.data.attributes;
+      this.setState((prevState) => ({
+        userData: {
+          ...prevState.userData,
+          journalEntries: prevState.userData.journalEntries.map(
+            (journalEntry) => {
+              return journalEntry.id === resJournal.id
+                ? resJournal
+                : journalEntry;
+            }
+          ),
+        },
+      }));
+    });
+  };
+
+  getTodaysRatings = () => {
+    this.state.userData.userRatings.map(rating => {
+      
     })
   }
-
-  updateJournalEntry = (entry, id) =>{
-    console.log(entry, id)
-    let editedEntry = {...entry, user_id: this.state.auth.user.id}
-    console.log(editedEntry)
-    api.patch.patchJournal(editedEntry, id)
-    .then(res => {
-      console.log(res)
-      let resJournal = res.data.attributes
-      this.setState(prevState => ({
-        userData:{
-          ...prevState.userData,
-          journalEntries: prevState.userData.journalEntries.map(journalEntry => {
-            return journalEntry.id === resJournal.id ? resJournal : journalEntry
-          })
-        }
-      }))
-    })
-  }
-
-
 
   incrementRating = (rating) => {
     console.log(rating, rating.id);
@@ -211,12 +251,12 @@ export default class App extends React.Component {
         <Router>
           <HomeNavBar onLogout={this.logout} />
           <Switch>
-          <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomePage} />
             <Route
               exact
               path="/signup"
               render={(routerProps) => (
-                <SignupPage {...routerProps} onLogin={this.login} />
+                <SignupPage {...routerProps} onSignup={this.signup} />
               )}
             />
             <Route
@@ -230,8 +270,9 @@ export default class App extends React.Component {
               exact
               path="/dashboard"
               render={(routerProps) => (
-                <DashboardPage
+                <DashboardWithLoading
                   {...routerProps}
+                  isLoading={this.state.loading}
                   loggedIn={this.state.auth.loggedIn}
                   userData={this.state.userData}
                   categories={this.state.categories}
@@ -240,7 +281,7 @@ export default class App extends React.Component {
                   feelings={this.state.feelings}
                   addFeeling={this.addFeeling}
                   addJournalEntry={this.addJournalEntry}
-                  updateJournalEntry = {this.updateJournalEntry}
+                  updateJournalEntry={this.updateJournalEntry}
                   quoteOfDay={this.state.quotes}
                 />
               )}
@@ -249,12 +290,13 @@ export default class App extends React.Component {
               exact
               path="/journal"
               render={(routerProps) => (
-                <JournalPage
+                <JournalWithLoading
                   {...routerProps}
+                  isLoading={this.state.loading}
                   loggedIn={this.state.auth.loggedIn}
                   userJournalEntries={this.state.userData.journalEntries}
-                  updateJournalEntry = {this.updateJournalEntry}
-                  addJournalEntry = {this.addJournalEntry}
+                  updateJournalEntry={this.updateJournalEntry}
+                  addJournalEntry={this.addJournalEntry}
                 />
               )}
             />
@@ -262,8 +304,9 @@ export default class App extends React.Component {
               exact
               path="/feeling_tracker"
               render={(routerProps) => (
-                <FeelingPage
+                <FeelingWithLoading
                   {...routerProps}
+                  isLoading={this.state.loading}
                   loggedIn={this.state.auth.loggedIn}
                   userFeelings={this.state.userData.feelings}
                   feelings={this.state.feelings}
@@ -274,8 +317,9 @@ export default class App extends React.Component {
               exact
               path="/todos"
               render={(routerProps) => (
-                <ListPage
+                <ListWithLoading
                   {...routerProps}
+                  isLoading={this.state.loading}
                   loggedIn={this.state.auth.loggedIn}
                   userTodos={this.state.userData.todos}
                 />

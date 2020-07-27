@@ -24,9 +24,9 @@ export default class SignupForm extends React.Component {
   handleSubmit = (e) =>{
     e.preventDefault()
     api.user.createNewUser(this.state.fields).then(data => {
+      console.log(data)
       if (!data.error){
-        this.props.onLogin(data);
-        console.log(this.props)
+        this.props.onSignup(data);
         this.props.routerProps.history.push('/dashboard')
       } else {
         this.setState({error: true})

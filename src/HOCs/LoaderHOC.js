@@ -5,12 +5,12 @@ export default function LoaderHOC(WrappedComponent) {
     return (
         class LoaderHOC extends React.Component{
             isLoaded = () => {
+                return !this.props.isLoading
             
-                return this.props.userData.fullName.length > 0
             }
             
             render(){
-                    // console.log(this.isAuthorized())
+                    console.log(this.props)
                     return this.isLoaded() ? <WrappedComponent {...this.props} /> : <LoadingPage />
             }
         }

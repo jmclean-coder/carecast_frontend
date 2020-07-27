@@ -3,7 +3,7 @@ import SignupForm from '../components/homepage/SignupForm';
 
 export default function SignupPage(props){
     return(
-        <SignupForm onLogin={props.onLogin} routerProps={props}/>
+        <SignupForm onSignup={props.onSignup} routerProps={props}/>
     )
 
 }
