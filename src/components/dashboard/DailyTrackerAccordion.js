@@ -9,19 +9,10 @@ import {
 import TrackerCard from "./TrackerCard";
 export default function DailyTrackerAccordion(props) {
 
-
-
-  const renderTrackerCards = () => {
-     return props.categories.map((category) => {
-      return props.trackerData.map((data) => {
-        if(data.category_id === category.id){
-            console.log("hi")
-             return <TrackerCard category={category} key={`category_${category.id}`} ratingData={data} incrementRating={props.incrementRating} decrementRating={props.decrementRating}/>
-
-        }
-      })
-    })
+const renderTrackerCards = () => {
+     return props.categories.map(category => <TrackerCard category={category} key={`category_${category.id}`} incrementRating={props.incrementRating} decrementRating={props.decrementRating}/>)
   }
+
 
   return (
     <Accordion defaultActiveKey="0">
@@ -35,4 +26,5 @@ export default function DailyTrackerAccordion(props) {
       </Card>
     </Accordion>
   );
+
 }
