@@ -2,39 +2,21 @@ import React from "react";
 import { Container, Row, Col, Accordion, Card, Button } from "react-bootstrap";
 import TrackerCard from "./TrackerCard";
 export default function DailyTrackerAccordion(props) {
-
-  DailyTrackerAccordion.defaultProps ={
-    ratingData: {
-      rating: 0
-    }
-  }
+  
   const renderTrackerCards = () => {
-    return props.categories.map((category) => {
-      return props.todaysRatings.map((rating) => {
-        if (rating.category_id === category.id) {
-          return (
-            <TrackerCard
-              category={category}
-              key={`category_${category.id}`}
-              ratingData={rating}
-              incrementRating={props.incrementRating}
-              decrementRating={props.decrementRating}
-            />
-          );
-        }
-      });
-    });
-  };
-  const renderDefaultTrackerCards = () => {
-    return props.categories.map(category => 
-      <TrackerCard
-              category={category}
-              key={`category_${category.id}`}
-              incrementRating={props.incrementRating}
-              decrementRating={props.decrementRating}
-            />
-    )
+// console.log(props.todaysRatings)
+    // if(props.todaysRatings.length ==  0 ){
+      return props.categories.map(category => 
+        <TrackerCard
+                category={category}
+                key={`category_${category.id}`}
+                incrementRating={props.incrementRating}
+                decrementRating={props.decrementRating}
+                ratingData={props.todaysRatings}
+              />
+      )
   }
+  
 
   return (
     <Accordion defaultActiveKey="0">
@@ -43,7 +25,7 @@ export default function DailyTrackerAccordion(props) {
           Daily Tracker
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
-          <Container>{props.todaysRatings.length > 0 ? renderTrackerCards() : renderDefaultTrackerCards()}</Container>
+          <Container>{renderTrackerCards()}</Container>
         </Accordion.Collapse>
       </Card>
     </Accordion>
@@ -51,3 +33,4 @@ export default function DailyTrackerAccordion(props) {
 
 
 }
+
