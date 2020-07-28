@@ -61,6 +61,16 @@ const patchRating = data => {
             rating: data.rating
         })
     })
+    .then(res => res.json())
+}
+const postRating = (data) =>{
+    console.log(data)
+    return fetch(`${API_ROOT}/user_ratings`, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
 }
 const fetchFeelings = () =>{
     return fetch(`${API_ROOT}/feelings`, {
@@ -128,5 +138,8 @@ export const api ={
     },
     affirmations:{
         fetchAffirmations,
+    },
+    ratings:{
+        postRating
     }
 }
