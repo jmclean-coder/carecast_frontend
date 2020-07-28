@@ -5,9 +5,9 @@ import DashboardPage from "./containers/DashboardPage";
 import JournalPage from "./containers/JournalPage";
 import FeelingPage from "./containers/FeelingPage";
 import ListPage from "./containers/ListPage";
-import SignupPage from "./containers/SignupPage"
+import SignupPage from "./containers/SignupPage";
 import HomeNavBar from "./components/homepage/HomeNavBar";
-import LoaderHOC from "./HOCs/LoaderHOC"
+import LoaderHOC from "./HOCs/LoaderHOC";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,13 +15,10 @@ import {
   Redirect,
 } from "react-router-dom";
 import { api } from "./services/api";
-const DashboardWithLoading = LoaderHOC(DashboardPage)
-const JournalWithLoading = LoaderHOC(JournalPage)
-const FeelingWithLoading = LoaderHOC(FeelingPage)
-const ListWithLoading = LoaderHOC(ListPage)
-
-
-
+const DashboardWithLoading = LoaderHOC(DashboardPage);
+const JournalWithLoading = LoaderHOC(JournalPage);
+const FeelingWithLoading = LoaderHOC(FeelingPage);
+const ListWithLoading = LoaderHOC(ListPage);
 
 export default class App extends React.Component {
   state = {
@@ -33,7 +30,7 @@ export default class App extends React.Component {
     categories: [],
     feelings: [],
     quotes: [],
-    loading: false 
+    loading: false,
   };
   //each time app mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
@@ -52,14 +49,14 @@ export default class App extends React.Component {
         this.getCategories();
         this.getFeelings();
         this.getQuotes();
-      })
+      });
     }
-    console.log(this.state, 1)
+    console.log(this.state, 1);
     this.setState({ loading: false });
   }
 
   signup = (data) => {
-    console.log(this.state, 2)
+    console.log(this.state, 2);
     localStorage.setItem("token", data.jwt);
     this.setState({
       auth: {
@@ -67,7 +64,7 @@ export default class App extends React.Component {
         user: { id: data.id, username: data.username },
         loggedIn: true,
       },
-      loading: true
+      loading: true,
     });
     this.getUserData(data.id);
     this.getCategories();
@@ -80,7 +77,7 @@ export default class App extends React.Component {
     // user data and token from fetch in api
     // console.log(data);
     //setting token in localstorage
-    console.log(this.state, 3)
+    console.log(this.state, 3);
     localStorage.setItem("token", data.jwt);
     this.setState({
       auth: {
@@ -88,7 +85,7 @@ export default class App extends React.Component {
         user: { id: data.id, username: data.username },
         loggedIn: true,
       },
-      loading: true
+      loading: true,
     });
     this.getUserData(data.id);
     this.getCategories();
@@ -108,33 +105,33 @@ export default class App extends React.Component {
   };
 
   getUserData = (id) => {
+    api.user
+      .fetchUserData(id)
 
-    api.user.fetchUserData(id)
-    
-    .then((res) => {
-      // console.log(res)
-      const {
-        full_name,
-        journal_entries,
-        list_items,
-        feelings,
-        user_ratings,
-        todays_user_ratings,
-      } = res.data.attributes;
-      this.setState({
-        userData: {
-          ...this.state.userData,
-          fullName: full_name,
-          userRatings: [...user_ratings],
-          todaysRatings: [...todays_user_ratings],
-          feelings: [...feelings],
-          journalEntries: [...journal_entries],
-          todos: [...list_items],
-        },
-        loading: false
+      .then((res) => {
+        console.log(res);
+        const {
+          full_name,
+          journal_entries,
+          list_items,
+          feelings,
+          user_ratings,
+          todays_user_ratings,
+        } = res.data.attributes;
+        this.setState({
+          userData: {
+            ...this.state.userData,
+            fullName: full_name,
+            userRatings: [...user_ratings],
+            todaysRatings: [...todays_user_ratings],
+            feelings: [...feelings],
+            journalEntries: [...journal_entries],
+            todos: [...list_items],
+          },
+          loading: false,
+        });
       });
-    });
-    console.log(this.state, 4)
+    console.log(this.state, 4);
   };
 
   getCategories = () => {
@@ -212,35 +209,81 @@ export default class App extends React.Component {
     });
   };
 
-  incrementRating = (rating) => {
-    console.log(rating, rating.id);
-    if(rating.rating < 10){
-      this.setState((prevState) => ({
-        userData: {
-          ...prevState.userData,
-          todaysRatings: prevState.userData.todaysRatings.map((userRating) =>
-          userRating.id === rating.id
-          ? { ...userRating, rating: userRating.rating + 1 }
-          : userRating
-          ),
-        },
-      }));
+  incrementRating = (categoryId) => {
+
+    let foundRating = this.state.userData.todaysRatings.find(
+      (stateRating) => stateRating.category_id === categoryId
+    );
+    if (foundRating) {
+      //2. otherwise increment existing rating
+      //a. update backend PATCH
+      //b. increment found rating in state
+      const elementsIndex = this.state.userData.todaysRatings.findIndex(
+        (element) => element.category_id == categoryId
+      );
+      const newArr = [...this.state.userData.todaysRatings];
+      newArr[elementsIndex] = {
+        ...newArr[elementsIndex],
+        rating: newArr[elementsIndex].rating + 1,
+      };
+
+      this.setState(
+        (prevState) => ({
+          userData: {
+            ...prevState.userData,
+            todaysRatings: newArr,
+          },
+        }),
+        () =>
+          api.patch
+            .patchRating(newArr[elementsIndex])
+            .then((res) => console.log(res))
+      );
+    } else {
+      //1. If rating does not exist in state, add new rating
+      let data = {
+        rating: 1,
+        category_id: categoryId,
+      };
+
+      api.ratings.postRating(data).then((res) => {
+        let rating = res.data.attributes;
+        console.log(res.data.attributes);
+        this.setState((prevState) => ({
+          userData: {
+            ...prevState.userData,
+            todaysRatings: [...prevState.userData.todaysRatings, rating],
+          },
+        }));
+      });
     }
+
+    // console.log(data);
+    // debugger
   };
-  decrementRating = (rating) => {
-    console.log(rating);
-    if(rating.rating > 0){
-      this.setState((prevState) => ({
+
+  decrementRating = (categoryId) => {
+    const elementsIndex = this.state.userData.todaysRatings.findIndex(
+      (element) => element.category_id == categoryId
+    );
+    const newArr = [...this.state.userData.todaysRatings];
+    newArr[elementsIndex] = {
+      ...newArr[elementsIndex],
+      rating: newArr[elementsIndex].rating - 1,
+    };
+
+    this.setState(
+      (prevState) => ({
         userData: {
           ...prevState.userData,
-          todaysRatings: prevState.userData.todaysRatings.map((userRating) =>
-          userRating.id === rating.id
-          ? { ...userRating, rating: userRating.rating - 1 }
-          : userRating
-          ),
+          todaysRatings: newArr,
         },
-      }));
-    }
+      }),
+      () =>
+        api.patch
+          .patchRating(newArr[elementsIndex])
+          .then((res) => console.log(res))
+    );
   };
   render() {
     return (
@@ -280,6 +323,7 @@ export default class App extends React.Component {
                   addJournalEntry={this.addJournalEntry}
                   updateJournalEntry={this.updateJournalEntry}
                   quoteOfDay={this.state.quotes}
+                  user={this.state.auth.user}
                 />
               )}
             />
