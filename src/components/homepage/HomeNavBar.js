@@ -14,8 +14,8 @@ export default function HomeNavBar(props) {
         CareCast
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav>
+      <Navbar.Collapse  className="justify-content-end" id="basic-navbar-nav">
+        <Nav >
           {token ? (
             <Nav.Link as={Link} to="/dashboard">
               Dashboard
