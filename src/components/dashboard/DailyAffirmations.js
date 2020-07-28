@@ -5,10 +5,10 @@ export default function DailyAffirmations(props) {
     <Jumbotron fluid>
     <blockquote className="blockquote mb-0">
       <h2>
-        {' '}{props.quoteOfDay.contents.quotes[0].quote}{' '}
+        {' '}{ "And Still You Rise" || props.quoteOfDay.contents.quotes[0].quote}{' '}
       </h2>
       <footer className="blockquote-footer">
-      {props.quoteOfDay.contents.quotes[0].author}<cite title="Source Title">They Said So</cite>
+      {props.quoteOfDay.contents.quotes[0].author}<cite title="Source Title"> They Said So</cite>
       </footer>
     </blockquote>
     </Jumbotron>
