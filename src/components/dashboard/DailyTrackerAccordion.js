@@ -19,7 +19,7 @@ export default function DailyTrackerAccordion(props) {
   
 
   return (
-    <Accordion defaultActiveKey="0">
+    <Accordion>
       <Card>
         <Accordion.Toggle as={Card.Header} bg="dark" eventKey="0">
           Daily Tracker
