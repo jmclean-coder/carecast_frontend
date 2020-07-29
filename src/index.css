@@ -1,26 +1,36 @@
 body {
   margin: 0;
   font-family: Montserrat;
+  font-style: normal;
+font-weight: normal;
+font-size: 1.34em;
+line-height: 2.09em;
+color: #000000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-#day-wrapper{
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 8px;
-  width: 351px;
+h1 {
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 2.93em;
+line-height: 3.56em;
+color: #000000;
+}
+h2{
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 2.01em;
+line-height: 2.23em;
+color: #262626;
+}
+h3{
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.51em;
+  line-height: 1.84em;
+  color: #858789;
 }
 
-.cell{
-  background-color: aquamarine;
-  height: 42px;
-  width: 42px;
-  border-radius: 6.5px;
-}
-.cell.red{
-  background-color: red;
-}
-.cell.green{
-  background-color: g;
-}

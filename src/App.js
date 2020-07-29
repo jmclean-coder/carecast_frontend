@@ -117,6 +117,7 @@ export default class App extends React.Component {
           feelings,
           user_ratings,
           todays_user_ratings,
+          todays_user_feelings
         } = res.data.attributes;
         this.setState({
           userData: {
@@ -127,6 +128,7 @@ export default class App extends React.Component {
             feelings: [...feelings],
             journalEntries: [...journal_entries],
             todos: [...list_items],
+            todaysFeelings: [...todays_user_feelings]
           },
           loading: false,
         });
@@ -319,6 +321,7 @@ export default class App extends React.Component {
                   incrementRating={this.incrementRating}
                   decrementRating={this.decrementRating}
                   feelings={this.state.feelings}
+                  todaysFeelings={this.state.todaysFeelings}
                   addFeeling={this.addFeeling}
                   addJournalEntry={this.addJournalEntry}
                   updateJournalEntry={this.updateJournalEntry}
@@ -350,7 +353,9 @@ export default class App extends React.Component {
                   isLoading={this.state.loading}
                   loggedIn={this.state.auth.loggedIn}
                   userFeelings={this.state.userData.feelings}
-                  feelings={this.state.feelings}
+                  addFeeling={this.addFeeling}
+                  feelingList={this.state.feelings}
+                  todaysFeelings={this.state.userData.todaysFeelings}
                 />
               )}
             />
