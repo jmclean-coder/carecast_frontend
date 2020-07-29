@@ -11,6 +11,7 @@ import DailyTrackerAccordion from "../components/dashboard/DailyTrackerAccordion
 import MoodAccordion from '../components/dashboard/MoodAccordion'
 import JournalAccordion from '../components/dashboard/JournalAccordion'
 import DailyAffirmations from '../components/dashboard/DailyAffirmations'
+import TodoAccordion from '../components/list items/ToDoAccordion'
 
 
 class DashboardPage extends React.Component {
@@ -22,6 +23,7 @@ class DashboardPage extends React.Component {
       todos,
       feelings,
       todaysRatings,
+      todaysFeelings
       
     } = this.props.userData;
     
@@ -31,8 +33,9 @@ class DashboardPage extends React.Component {
           <DailyAffirmations quoteOfDay={this.props.quoteOfDay}/>
         <Container>
         <DailyTrackerAccordion categories={this.props.categories} todaysRatings={todaysRatings} incrementRating={this.props.incrementRating} decrementRating={this.props.decrementRating}/>
-        <MoodAccordion feelings={this.props.feelings} userFeelings={feelings} addFeeling={this.props.addFeeling}/>
+        <MoodAccordion feelings={this.props.feelings} userFeelings={feelings} todaysFeelings={todaysFeelings} addFeeling={this.props.addFeeling}/>
         <JournalAccordion journalEntries={journalEntries} addJournalEntry={this.props.addJournalEntry} updateJournalEntry={this.props.updateJournalEntry}/>
+        {/* <TodoAccordion todos={todos} addTodo={this.props.addToDo} updateToDo={this.props.updateToDo} /> */}
         </Container>
       </div>
     );

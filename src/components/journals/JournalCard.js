@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Card, Modal} from "react-bootstrap";
-import JournalModal from '../dashboard/JournalModal'
+import { Container, Card, Modal, Button} from "react-bootstrap";
+import JournalModal from './JournalModal'
 import { ReactComponent as Meatball } from "../../assets/Ellipsis 40px.svg";
 export default class JournalCard extends React.Component {
   state = {
@@ -17,13 +17,14 @@ export default class JournalCard extends React.Component {
   //   });
   // }
 render(){
-
+//make new button to delete an entry
   return (
     <>
         <Card style={{width: "336px",
           height: "254px"}} >
           <Card.Header >
           {this.props.journal ? <Meatball  onClick={()=>this.handleShow()}></Meatball>: null}
+          <Button onClick={''}></Button>
             </Card.Header>
           <Card.Body>
                 <Card.Title className="text-center">{this.props.journal.title}</Card.Title>

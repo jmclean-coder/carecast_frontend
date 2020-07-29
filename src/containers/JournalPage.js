@@ -1,7 +1,7 @@
 import React from "react";
 import PrivacyHOC from '../HOCs/PrivacyHOC'
-import JournalCard from "../components/dashboard/JournalCard"
-import JournalModal from '../components/dashboard/JournalModal'
+import JournalCard from "../components/journals/JournalCard"
+import JournalModal from '../components/journals/JournalModal'
 import {
   Container,
   Card,

@@ -1,23 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import BlankCalendar from '../assets/svgComponents/BlankCalendar'
 import PrivacyHOC from '../HOCs/PrivacyHOC'
-import Calendar from '../components/feeling tracker/Calendar'
-import { Container } from "react-bootstrap";
-class FeelingPage extends React.Component {
-  render() {
+import { Container, Button, Modal, Card } from "react-bootstrap";
+import MoodModal from '../components/feeling tracker/MoodModal'
+import MoodCard from '../components/feeling tracker/MoodCard'
+
+function FeelingPage(props) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const renderMoods = () =>{
+       return props.userFeelings.map(feeling => <MoodCard feelingList={props.feelingList} feeling={feeling} key={`feeling_page_${feeling.id}`} />)
+       }
+
     return (
       <Container>
-        
-      <div>
-       <BlankCalendar ></BlankCalendar>
-      </div>
+        <Modal show={show} onHide={handleClose}>
+        <MoodModal feelings={props.feelings} addFeeling={props.addFeeling}/>
+        </Modal>
+        <div className="text-center">
+        <Button onClick={handleShow}>Track Your Mood</Button>
+        </div>
 
+        <h3>Today's Mood(s)</h3>
+        {/* {console.log(renderMoods())} */}
+        <Container>
+          {renderMoods()}
+        </Container>
       <div>
-        <Calendar />
+       <BlankCalendar userFeelings={props.userFeelings}></BlankCalendar>
       </div>
 
       </Container>
     );
-  }
 }
 export default PrivacyHOC(FeelingPage)
