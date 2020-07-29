@@ -2,8 +2,8 @@ import React from "react";
 import { ThemeProvider } from "react-bootstrap";
 
 class BlankCalendar extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.monthRef = React.createRef()
   }
   state = {
@@ -20,15 +20,16 @@ class BlankCalendar extends React.Component {
 
 
 
+
    handleClick = (e) =>{
     e.persist()
     console.log(e.target)
-    console.log(this.monthRef)
+    // console.log(this.monthRef)
   }
 
 handleNext = (e) =>{
     e.persist()
-    console.log(e)
+    console.log(e.target)
   }
 
  handlePrev = (e) => {
@@ -99,11 +100,35 @@ populateCalendar = (year, month) => {
           currentCell.style.rx = "2.5"
           currentCell.style.stroke= "#2E404B"
           currentCell.style.strokeWidth = "5"
-          console.log(currentCell)
+          currentCell.style.x = parseInt(currentCell.attributes.x.value) + 3 
+          currentCell.style.y = parseInt(currentCell.attributes.y.value) + 2.5 
+          console.log(currentCell.attributes.x.value)
+          // debugger
         }
+
+        
         currentCell.attributes.date.value = date
+
+        //if dates match, color change fill
+        // if the date of the current cell and the date of the feeling match, add the feelings need condition to a count
+        //if one is greater than the other set color based on that
         date++
       }
+                  let satisfiedCount = 0
+                  let unsatisfiedCount = 0
+                  this.props.userFeelings.map(feeling => {
+                    //map over useFeelings
+                    //compare feeling date using get date with current cell date
+                    let feelDate = new Date(feeling.created_at).getUTCDate()
+                    
+                    
+                    
+                    if(currentCell.attributes.date.value == feelDate){
+                      feeling.need_condition === "satisfied" ? satisfiedCount += 1 : unsatisfiedCount += 1
+                     satisfiedCount > unsatisfiedCount ? currentCell.style.fill = "#BDCEAE" : currentCell.style.fill = "#ED8989"   
+                    //  debugger      
+                    }
+                  } )
     }
   }
 
@@ -114,7 +139,7 @@ populateCalendar = (year, month) => {
   renderMonth = () =>{
     return this.month_icons.map(month_icon => {
       if(month_icon.props.id === this.state.currentMonth){
-        return <path id={month_icon.props.id} d={month_icon.props.d} fill={month_icon.props.fill} ></path>
+        return <path id={month_icon.props.id} d={month_icon.props.d} fill={month_icon.props.fill} key={`month_${month_icon.props.id}`}></path>
       }
     })
   }
@@ -173,7 +198,7 @@ month_icons = [
     </g>
     <g id="month" ref={this.monthRef}>
       
-      <g id="week1" ref={this.weekRef1}>
+      <g id="week1">
       <rect onClick={this.handleClick}id="1_1" date={"blank"} width="42" height="42" x="11" y="85" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="2_1" date={"blank"} width="42" height="42" x="59" y="85" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="3_1" date={"blank"} width="42" height="42" x="107" y="85" fill="#D9D9D9" rx="5"></rect>
@@ -182,7 +207,7 @@ month_icons = [
       <rect onClick={this.handleClick}id="6_1" date={"blank"} width="42" height="42" x="251" y="85" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="7_1" date={"blank"} width="42" height="42" x="299" y="85" fill="#D9D9D9" rx="5"></rect>
       </g>
-      <g id="week2" ref={this.weekRef2}>
+      <g id="week2">
       <rect onClick={this.handleClick}id="1_2" date={"blank"} width="42" height="42" x="11" y="135" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="2_2" date={"blank"} width="42" height="42" x="59" y="135" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="3_2" date={"blank"} width="42" height="42" x="107" y="135" fill="#D9D9D9" rx="5"></rect>
@@ -191,7 +216,7 @@ month_icons = [
       <rect onClick={this.handleClick}id="6_2" date={"blank"} width="42" height="42" x="251" y="135" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="7_2" date={"blank"} width="42" height="42" x="299" y="135" fill="#D9D9D9" rx="5"></rect>
       </g>
-      <g id="week3"ref={this.weekRef3}>
+      <g id="week3">
       <rect onClick={this.handleClick}id="1_3" date={"blank"} width="42" height="42" x="11" y="185" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="2_3" date={"blank"} width="42" height="42" x="59" y="185" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="3_3" date={"blank"} width="42" height="42" x="107" y="185" fill="#D9D9D9" rx="5"></rect>
@@ -200,7 +225,7 @@ month_icons = [
       <rect onClick={this.handleClick}id="6_3" date={"blank"} width="42" height="42" x="251" y="185" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="7_3" date={"blank"} width="42" height="42" x="299" y="185" fill="#D9D9D9" rx="5"></rect>
       </g>
-      <g id="week4"ref={this.weekRef4}>
+      <g id="week4">
       <rect onClick={this.handleClick}id="1_4" date={"blank"} width="42" height="42" x="11" y="235" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="2_4" date={"blank"} width="42" height="42" x="59" y="235" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="3_4" date={"blank"} width="42" height="42" x="107" y="235" fill="#D9D9D9" rx="5"></rect>
@@ -209,7 +234,7 @@ month_icons = [
       <rect onClick={this.handleClick}id="6_4" date={"blank"} width="42" height="42" x="251" y="235" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="7_4" date={"blank"} width="42" height="42" x="299" y="235" fill="#D9D9D9" rx="5"></rect>
       </g>
-      <g id="week5"ref={this.weekRef5}>
+      <g id="week5">
       <rect onClick={this.handleClick}id="1_5" date={"blank"} width="42" height="42" x="11" y="285" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="2_5" date={"blank"} width="42" height="42" x="59" y="285" fill="#D9D9D9" rx="5"></rect>
       <rect onClick={this.handleClick}id="3_5" date={"blank"} width="42" height="42" x="107" y="285" fill="#D9D9D9" rx="5"></rect>
