@@ -11,13 +11,16 @@ function FeelingPage(props) {
   const handleShow = () => setShow(true);
 
   const renderMoods = () =>{
-       return props.userFeelings.map(feeling => <MoodCard feelingList={props.feelingList} feeling={feeling} key={`feeling_page_${feeling.id}`} />)
-       }
+       return props.userFeelingWords.map(feeling => {
+
+       return <MoodCard feelingList={props.feelingList} feeling={feeling} key={`feeling_page_${feeling.id}`} />
+       })
+      }
 
     return (
       <Container>
         <Modal show={show} onHide={handleClose}>
-        <MoodModal feelings={props.feelings} addFeeling={props.addFeeling}/>
+        <MoodModal feelings={props.feelingList} addFeeling={props.addFeeling}/>
         </Modal>
         <div className="text-center">
         <Button onClick={handleShow}>Track Your Mood</Button>
@@ -29,7 +32,7 @@ function FeelingPage(props) {
           {renderMoods()}
         </Container>
       <div>
-       <BlankCalendar userFeelings={props.userFeelings}></BlankCalendar>
+       <BlankCalendar feelingList={props.feelingList} userFeelings={props.userFeelings}></BlankCalendar>
       </div>
 
       </Container>

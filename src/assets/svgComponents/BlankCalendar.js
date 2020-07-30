@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider } from "react-bootstrap";
+
 
 class BlankCalendar extends React.Component {
   constructor(props){
@@ -36,8 +36,9 @@ handleNext = (e) =>{
     e.persist()
     console.log(e)
   }
-  setCurrent= () => {
-const date = new Date()
+  
+setCurrent= () => {
+  const date = new Date()
 const current = date.toLocaleString('default', { dateStyle: 'full' });
 this.setState({ currentDate: current})
 console.log(current)
@@ -63,36 +64,26 @@ return month
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
 
-
 populateCalendar = (year, month) => {
+  
   let firstDay = (new Date(year, month)).getDay();
-  console.log(year, month, firstDay)
-
   let cal = this.monthRef
-  // this.weekRef1
   let date = 1
-  // each row of svg calendar
-  // console.log(cal.current.children)
-  let rows = cal.current.children
+  let monthG = cal.current.children
 
-  for(let i = 0; i < rows.length; i++){
-    // console.log(rows[i].children) 
-    //a rows child cells
-    let cells = rows[i].children
+  for(let i = 0; i < monthG.length; i++){
+    let weeks = monthG[i].children
 
-    for(let j = 0; j < cells.length; j++){
-      // console.log(cells[j].attributes.date)
-      //each individual cell
-      console.log(cells[j])
-      let currentCell = cells[j]
-      // console.log(currentCell.attributes)
+    for(let j = 0; j < weeks.length; j++){
+      let currentCell = weeks[j]
+
       if (i === 0 && j < firstDay ){
-        //if im on the first row and have reached the first yet, continue
         continue
       } else if( date > this.daysInMonth(month, year)){
-        //if date is higher than max days in month break from loop
         break
       } else {
+
+        currentCell.attributes.date.value = date
 
         if (date === this.state.today.getDate() && year === this.state.today.getFullYear() && month === this.state.today.getMonth()) {
           currentCell.style.width = "37"
@@ -100,40 +91,38 @@ populateCalendar = (year, month) => {
           currentCell.style.rx = "2.5"
           currentCell.style.stroke= "#2E404B"
           currentCell.style.strokeWidth = "5"
-          currentCell.style.x = parseInt(currentCell.attributes.x.value) + 3 
+          currentCell.style.x = parseInt(currentCell.attributes.x.value) + 2.5 
           currentCell.style.y = parseInt(currentCell.attributes.y.value) + 2.5 
-          console.log(currentCell.attributes.x.value)
-          // debugger
         }
-
         
-        currentCell.attributes.date.value = date
-
-        //if dates match, color change fill
-        // if the date of the current cell and the date of the feeling match, add the feelings need condition to a count
-        //if one is greater than the other set color based on that
+          let satisfiedCount = 0
+          let unsatisfiedCount = 0
+          
+          this.props.userFeelings.map(userFeeling => {
+         
+            const foundFeeling = this.props.feelingList.find(listFeeling => listFeeling.id === userFeeling.feeling_id)
+            let feelDate = new Date(userFeeling.created_at).getUTCDate()
+           
+            if(currentCell.attributes.date.value == feelDate){
+              foundFeeling.need_condition === "satisfied" ? satisfiedCount += 1 : unsatisfiedCount += 1
+              if (satisfiedCount === unsatisfiedCount){
+                currentCell.style.fill = "#D5AC9C"
+              } else if(satisfiedCount > unsatisfiedCount ){
+                currentCell.style.fill = "#BDCEAE"
+              } else{
+                currentCell.style.fill = "#ED8989"
+                }
+              } 
+            } 
+          );  
+            debugger;
         date++
       }
-                  let satisfiedCount = 0
-                  let unsatisfiedCount = 0
-                  this.props.userFeelings.map(feeling => {
-                    //map over useFeelings
-                    //compare feeling date using get date with current cell date
-                    let feelDate = new Date(feeling.created_at).getUTCDate()
-                    
-                    
-                    
-                    if(currentCell.attributes.date.value == feelDate){
-                      feeling.need_condition === "satisfied" ? satisfiedCount += 1 : unsatisfiedCount += 1
-                     satisfiedCount > unsatisfiedCount ? currentCell.style.fill = "#BDCEAE" : currentCell.style.fill = "#ED8989"   
-                    //  debugger      
-                    }
-                  } )
+      
     }
+
   }
 
-
-{/* <rect id="Rectangle 27" x="13.5" y="87.5" width="37" height="37" rx="2.5" fill="#BDCEAE" stroke="#2E404B" stroke-width="5"/> */}
 }
 
   renderMonth = () =>{
@@ -196,52 +185,52 @@ month_icons = [
     <path id="F" d="M271.05 62.154V64.926H276.612V67.68H271.05V72H267.486V59.4H277.368V62.154H271.05Z" fill="black"/>
     <path id="S_2" d="M319.861 72.252C318.841 72.252 317.851 72.126 316.891 71.874C315.931 71.622 315.151 71.286 314.551 70.866L315.721 68.238C316.285 68.61 316.939 68.91 317.683 69.138C318.427 69.366 319.159 69.48 319.879 69.48C321.247 69.48 321.931 69.138 321.931 68.454C321.931 68.094 321.733 67.83 321.337 67.662C320.953 67.482 320.329 67.296 319.465 67.104C318.517 66.9 317.725 66.684 317.089 66.456C316.453 66.216 315.907 65.838 315.451 65.322C314.995 64.806 314.767 64.11 314.767 63.234C314.767 62.466 314.977 61.776 315.397 61.164C315.817 60.54 316.441 60.048 317.269 59.688C318.109 59.328 319.135 59.148 320.347 59.148C321.175 59.148 321.991 59.244 322.795 59.436C323.599 59.616 324.307 59.886 324.919 60.246L323.821 62.892C322.621 62.244 321.457 61.92 320.329 61.92C319.621 61.92 319.105 62.028 318.781 62.244C318.457 62.448 318.295 62.718 318.295 63.054C318.295 63.39 318.487 63.642 318.871 63.81C319.255 63.978 319.873 64.152 320.725 64.332C321.685 64.536 322.477 64.758 323.101 64.998C323.737 65.226 324.283 65.598 324.739 66.114C325.207 66.618 325.441 67.308 325.441 68.184C325.441 68.94 325.231 69.624 324.811 70.236C324.391 70.848 323.761 71.34 322.921 71.712C322.081 72.072 321.061 72.252 319.861 72.252Z" fill="black"/>
     </g>
-    <g id="month" ref={this.monthRef}>
+    <g id="month" ref={this.monthRef} onClick={this.handleClick}>
       
       <g id="week1">
-      <rect onClick={this.handleClick}id="1_1" date={"blank"} width="42" height="42" x="11" y="85" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="2_1" date={"blank"} width="42" height="42" x="59" y="85" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="3_1" date={"blank"} width="42" height="42" x="107" y="85" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="4_1" date={"blank"} width="42" height="42" x="155" y="85" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="5_1" date={"blank"} width="42" height="42" x="203" y="85" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="6_1" date={"blank"} width="42" height="42" x="251" y="85" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="7_1" date={"blank"} width="42" height="42" x="299" y="85" fill="#D9D9D9" rx="5"></rect>
+      <rect id="1_1" date={"blank"} width="42" height="42" x="11" y="85" fill="#D9D9D9" rx="5"></rect>
+      <rect id="2_1" date={"blank"} width="42" height="42" x="59" y="85" fill="#D9D9D9" rx="5"></rect>
+      <rect id="3_1" date={"blank"} width="42" height="42" x="107" y="85" fill="#D9D9D9" rx="5"></rect>
+      <rect id="4_1" date={"blank"} width="42" height="42" x="155" y="85" fill="#D9D9D9" rx="5"></rect>
+      <rect id="5_1" date={"blank"} width="42" height="42" x="203" y="85" fill="#D9D9D9" rx="5"></rect>
+      <rect id="6_1" date={"blank"} width="42" height="42" x="251" y="85" fill="#D9D9D9" rx="5"></rect>
+      <rect id="7_1" date={"blank"} width="42" height="42" x="299" y="85" fill="#D9D9D9" rx="5"></rect>
       </g>
       <g id="week2">
-      <rect onClick={this.handleClick}id="1_2" date={"blank"} width="42" height="42" x="11" y="135" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="2_2" date={"blank"} width="42" height="42" x="59" y="135" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="3_2" date={"blank"} width="42" height="42" x="107" y="135" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="4_2" date={"blank"} width="42" height="42" x="155" y="135" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="5_2" date={"blank"} width="42" height="42" x="203" y="135" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="6_2" date={"blank"} width="42" height="42" x="251" y="135" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="7_2" date={"blank"} width="42" height="42" x="299" y="135" fill="#D9D9D9" rx="5"></rect>
+      <rect id="1_2" date={"blank"} width="42" height="42" x="11" y="135" fill="#D9D9D9" rx="5"></rect>
+      <rect id="2_2" date={"blank"} width="42" height="42" x="59" y="135" fill="#D9D9D9" rx="5"></rect>
+      <rect id="3_2" date={"blank"} width="42" height="42" x="107" y="135" fill="#D9D9D9" rx="5"></rect>
+      <rect id="4_2" date={"blank"} width="42" height="42" x="155" y="135" fill="#D9D9D9" rx="5"></rect>
+      <rect id="5_2" date={"blank"} width="42" height="42" x="203" y="135" fill="#D9D9D9" rx="5"></rect>
+      <rect id="6_2" date={"blank"} width="42" height="42" x="251" y="135" fill="#D9D9D9" rx="5"></rect>
+      <rect id="7_2" date={"blank"} width="42" height="42" x="299" y="135" fill="#D9D9D9" rx="5"></rect>
       </g>
       <g id="week3">
-      <rect onClick={this.handleClick}id="1_3" date={"blank"} width="42" height="42" x="11" y="185" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="2_3" date={"blank"} width="42" height="42" x="59" y="185" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="3_3" date={"blank"} width="42" height="42" x="107" y="185" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="4_3" date={"blank"} width="42" height="42" x="155" y="185" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="5_3" date={"blank"} width="42" height="42" x="203" y="185" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="6_3" date={"blank"} width="42" height="42" x="251" y="185" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="7_3" date={"blank"} width="42" height="42" x="299" y="185" fill="#D9D9D9" rx="5"></rect>
+      <rect id="1_3" date={"blank"} width="42" height="42" x="11" y="185" fill="#D9D9D9" rx="5"></rect>
+      <rect id="2_3" date={"blank"} width="42" height="42" x="59" y="185" fill="#D9D9D9" rx="5"></rect>
+      <rect id="3_3" date={"blank"} width="42" height="42" x="107" y="185" fill="#D9D9D9" rx="5"></rect>
+      <rect id="4_3" date={"blank"} width="42" height="42" x="155" y="185" fill="#D9D9D9" rx="5"></rect>
+      <rect id="5_3" date={"blank"} width="42" height="42" x="203" y="185" fill="#D9D9D9" rx="5"></rect>
+      <rect id="6_3" date={"blank"} width="42" height="42" x="251" y="185" fill="#D9D9D9" rx="5"></rect>
+      <rect id="7_3" date={"blank"} width="42" height="42" x="299" y="185" fill="#D9D9D9" rx="5"></rect>
       </g>
       <g id="week4">
-      <rect onClick={this.handleClick}id="1_4" date={"blank"} width="42" height="42" x="11" y="235" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="2_4" date={"blank"} width="42" height="42" x="59" y="235" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="3_4" date={"blank"} width="42" height="42" x="107" y="235" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="4_4" date={"blank"} width="42" height="42" x="155" y="235" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="5_4" date={"blank"} width="42" height="42" x="203" y="235" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="6_4" date={"blank"} width="42" height="42" x="251" y="235" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="7_4" date={"blank"} width="42" height="42" x="299" y="235" fill="#D9D9D9" rx="5"></rect>
+      <rect id="1_4" date={"blank"} width="42" height="42" x="11" y="235" fill="#D9D9D9" rx="5"></rect>
+      <rect id="2_4" date={"blank"} width="42" height="42" x="59" y="235" fill="#D9D9D9" rx="5"></rect>
+      <rect id="3_4" date={"blank"} width="42" height="42" x="107" y="235" fill="#D9D9D9" rx="5"></rect>
+      <rect id="4_4" date={"blank"} width="42" height="42" x="155" y="235" fill="#D9D9D9" rx="5"></rect>
+      <rect id="5_4" date={"blank"} width="42" height="42" x="203" y="235" fill="#D9D9D9" rx="5"></rect>
+      <rect id="6_4" date={"blank"} width="42" height="42" x="251" y="235" fill="#D9D9D9" rx="5"></rect>
+      <rect id="7_4" date={"blank"} width="42" height="42" x="299" y="235" fill="#D9D9D9" rx="5"></rect>
       </g>
       <g id="week5">
-      <rect onClick={this.handleClick}id="1_5" date={"blank"} width="42" height="42" x="11" y="285" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="2_5" date={"blank"} width="42" height="42" x="59" y="285" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="3_5" date={"blank"} width="42" height="42" x="107" y="285" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="4_5" date={"blank"} width="42" height="42" x="155" y="285" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="5_5" date={"blank"} width="42" height="42" x="203" y="285" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="6_5" date={"blank"} width="42" height="42" x="251" y="285" fill="#D9D9D9" rx="5"></rect>
-      <rect onClick={this.handleClick}id="7_5" date={"blank"} width="42" height="42" x="299" y="285" fill="#D9D9D9" rx="5"></rect>
+      <rect id="1_5" date={"blank"} width="42" height="42" x="11" y="285" fill="#D9D9D9" rx="5"></rect>
+      <rect id="2_5" date={"blank"} width="42" height="42" x="59" y="285" fill="#D9D9D9" rx="5"></rect>
+      <rect id="3_5" date={"blank"} width="42" height="42" x="107" y="285" fill="#D9D9D9" rx="5"></rect>
+      <rect id="4_5" date={"blank"} width="42" height="42" x="155" y="285" fill="#D9D9D9" rx="5"></rect>
+      <rect id="5_5" date={"blank"} width="42" height="42" x="203" y="285" fill="#D9D9D9" rx="5"></rect>
+      <rect id="6_5" date={"blank"} width="42" height="42" x="251" y="285" fill="#D9D9D9" rx="5"></rect>
+      <rect id="7_5" date={"blank"} width="42" height="42" x="299" y="285" fill="#D9D9D9" rx="5"></rect>
       </g>
       </g>
       

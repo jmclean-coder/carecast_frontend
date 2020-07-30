@@ -117,7 +117,8 @@ export default class App extends React.Component {
           feelings,
           user_ratings,
           todays_user_ratings,
-          todays_user_feelings
+          todays_user_feelings,
+          user_feelings
         } = res.data.attributes;
         this.setState({
           userData: {
@@ -128,7 +129,8 @@ export default class App extends React.Component {
             feelings: [...feelings],
             journalEntries: [...journal_entries],
             todos: [...list_items],
-            todaysFeelings: [...todays_user_feelings]
+            todaysFeelings: [...todays_user_feelings],
+            userFeelings: [...user_feelings]
           },
           loading: false,
         });
@@ -352,10 +354,11 @@ export default class App extends React.Component {
                   {...routerProps}
                   isLoading={this.state.loading}
                   loggedIn={this.state.auth.loggedIn}
-                  userFeelings={this.state.userData.feelings}
+                  userFeelingWords={this.state.userData.feelings}
                   addFeeling={this.addFeeling}
                   feelingList={this.state.feelings}
                   todaysFeelings={this.state.userData.todaysFeelings}
+                  userFeelings={this.state.userData.userFeelings}
                 />
               )}
             />
