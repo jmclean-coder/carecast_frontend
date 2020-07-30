@@ -10,6 +10,8 @@ export default class JournalCard extends React.Component {
   handleClose = () => this.setState({ show: false });
   handleShow = () => this.setState({ show: true });
 
+  handleDelete = () => {}
+
   // handleChange = (e) => {
   //   const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
   //   this.setState({
@@ -24,7 +26,7 @@ render(){
           height: "254px"}} >
           <Card.Header >
           {this.props.journal ? <Meatball  onClick={()=>this.handleShow()}></Meatball>: null}
-          <Button onClick={''}></Button>
+          <Button onClick={this.handleDelete}></Button>
             </Card.Header>
           <Card.Body>
                 <Card.Title className="text-center">{this.props.journal.title}</Card.Title>
