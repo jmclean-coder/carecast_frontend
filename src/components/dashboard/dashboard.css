@@ -1,0 +1,103 @@
+.tracker-accord{
+    display: grid;
+    grid-template-columns:  1fr 1fr;
+    grid-gap: 50px;justify-items: center;
+}
+.collaspe.show{
+    width: 113%;
+}
+.accordion{
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.Water.card {
+    width: 160px;
+    height: 181px;
+    background: #BDCEAE;
+    box-shadow: 0px 4.09559px 10.239px rgba(196, 196, 196, 0.5);
+    border-radius: 8.19117px;
+}
+
+.Sleep.card {
+    width: 160px;
+    height: 181px;
+    background: #BDCEAE;
+    box-shadow: 0px 4.09559px 10.239px rgba(196, 196, 196, 0.5);
+    border-radius: 8.19117px;
+}
+
+.Energy.card {
+    width: 160px;
+    height: 181px;
+    background: #ED8989;
+    box-shadow: 0px 4.09559px 10.239px rgba(196, 196, 196, 0.5);
+    border-radius: 8.19117px;
+}
+
+.Productivity.card {
+    width: 160px;
+    height: 181px;
+    background: #ED8989;
+    box-shadow: 0px 4.09559px 10.239px rgba(196, 196, 196, 0.5);
+    border-radius: 8.19117px;
+}
+
+.Motivation.card {
+    width: 160px;
+    height: 181px;
+    background: #F4CD9C;
+    box-shadow: 0px 4.09559px 10.239px rgba(196, 196, 196, 0.5);
+    border-radius: 8.19117px;
+}
+
+.Stress.card {
+    width: 160px;
+    height: 181px;
+    background: #F4CD9C;
+    box-shadow: 0px 4.09559px 10.239px rgba(196, 196, 196, 0.5);
+    border-radius: 8.19117px;
+}
+
+.plus{
+    position: absolute;
+    top: 70%;
+    left: 55%;
+}
+
+.minus{
+    position: absolute;
+    top: 70%;
+    right: 55%;
+
+}
+
+.tracker-title{
+    text-align: center;
+}
+.tracker-text{
+    text-align: center;
+}
+.mood_accordion{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+.feeling_summ{
+    text-align: center;
+}
+.feeling_summ2{
+    text-align: center;
+}
+
+.add_mood_btn{
+    position: absolute;
+    top: 6.8%;
+    left: 16%;
+}
+
+.feeling_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
