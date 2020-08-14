@@ -10,6 +10,7 @@ import {
   import MoodModal from '../feeling tracker/MoodModal'
   import {Link} from 'react-router-dom'
   import { ReactComponent as Plus } from "../../assets/BookPlus.svg";
+  import './dashboard.css'
 export default function MoodAccordion(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -30,12 +31,12 @@ export default function MoodAccordion(props) {
           <Accordion.Toggle as={Card.Header} bg="dark" eventKey="0">
             Mood
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
+          <Accordion.Collapse className="mood_accordion" eventKey="0">
             <>
         <div>
-          <h2>Today's Mood(s)
+          <h2>Mood(s)
           </h2>
-          <div className="text-right">
+          <div className="add_mood_btn">
           <Plus as={Button} onClick={handleShow} />
           </div>
             </div>
