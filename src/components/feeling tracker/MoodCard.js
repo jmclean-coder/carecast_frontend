@@ -7,7 +7,7 @@ export default function MoodCard(props) {
   return props.feeling.need_condition === "satisfied" ? (
    <div className="feeling_summ">
       <div className="feeling_card">
-      <Happy />
+      <Happy className="happy"/>
       <Card.Title>{props.feeling.name}</Card.Title>
       <Card.Text>{props.feeling.need_condition}</Card.Text>
       </div>
@@ -16,7 +16,7 @@ export default function MoodCard(props) {
   ) : (
     <div className="feeling_summ2">
       <div className="feeling_card">
-      <Unhappy />
+      <Unhappy className="frown"/>
       <Card.Title>{props.feeling.name}</Card.Title>
       <Card.Text>{props.feeling.need_condition}</Card.Text>
       </div>
