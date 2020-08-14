@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Accordion, Card, Button } from "react-bootstrap";
 import TrackerCard from "./TrackerCard";
+import './dashboard.css'
 export default function DailyTrackerAccordion(props) {
   
   const renderTrackerCards = () => {
@@ -25,7 +26,7 @@ export default function DailyTrackerAccordion(props) {
           Daily Tracker
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
-          <Container>{renderTrackerCards()}</Container>
+          <Container className="tracker-accord" >{renderTrackerCards()}</Container>
         </Accordion.Collapse>
       </Card>
     </Accordion>
