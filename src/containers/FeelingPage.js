@@ -4,6 +4,7 @@ import PrivacyHOC from '../HOCs/PrivacyHOC'
 import { Container, Button, Modal, Card } from "react-bootstrap";
 import MoodModal from '../components/feeling tracker/MoodModal'
 import MoodCard from '../components/feeling tracker/MoodCard'
+import '../components/dashboard/dashboard.css'
 
 function FeelingPage(props) {
   const [show, setShow] = useState(false);
@@ -19,6 +20,9 @@ function FeelingPage(props) {
 
     return (
       <Container>
+      <div>
+       <BlankCalendar feelingList={props.feelingList} userFeelings={props.userFeelings}></BlankCalendar>
+      </div>
         <Modal show={show} onHide={handleClose}>
         <MoodModal feelings={props.feelingList} addFeeling={props.addFeeling}/>
         </Modal>
@@ -28,12 +32,9 @@ function FeelingPage(props) {
 
         <h3>Today's Mood(s)</h3>
         {/* {console.log(renderMoods())} */}
-        <Container>
+        <Container className="feeling_container">
           {renderMoods()}
         </Container>
-      <div>
-       <BlankCalendar feelingList={props.feelingList} userFeelings={props.userFeelings}></BlankCalendar>
-      </div>
 
       </Container>
     );
