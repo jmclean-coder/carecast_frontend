@@ -26,7 +26,7 @@ render(){
           height: "254px"}} >
           <Card.Header >
           {this.props.journal ? <Meatball  onClick={()=>this.handleShow()}></Meatball>: null}
-          <Button onClick={this.handleDelete}></Button>
+          <Button className="delete_journal_btn" onClick={this.handleDelete}>X</Button>
             </Card.Header>
           <Card.Body>
                 <Card.Title className="text-center">{this.props.journal.title}</Card.Title>
