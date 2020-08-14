@@ -1,31 +1,44 @@
-body {
+.header{
+  height: 500px
+}
+
+#bootstrap-overrides a{
+  font-family:Montserrat;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;  
+  text-decoration: underline;
+}
+
+#bootstrap-overrides body, p {
   margin: 0;
   font-family: Montserrat;
   font-style: normal;
-font-weight: normal;
-font-size: 1.34em;
-line-height: 2.09em;
-color: #000000;
+  font-weight: normal;
+  font-size: 1.34em;
+  line-height: 2.09em;
+  color: #000000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-h1 {
-font-family: Montserrat;
-font-style: normal;
-font-weight: 600;
-font-size: 2.93em;
-line-height: 3.56em;
-color: #000000;
+
+#bootstrap-overrides h1 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.93em;
+  line-height: 3.56em;
+  color: #000000;
 }
-h2{
-font-family: Montserrat;
-font-style: normal;
-font-weight: 500;
-font-size: 2.01em;
-line-height: 2.23em;
-color: #262626;
+#bootstrap-overrides h2 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.01em;
+  line-height: 2.23em;
+  color: #262626;
 }
-h3{
+#bootstrap-overrides h3 {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -34,3 +47,175 @@ h3{
   color: #858789;
 }
 
+#bootstrap-overrides .btn.btn-secondary {
+  width: 245px;
+  height: 44px;
+  filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
+  background: #ffffff;
+  border: 2.5px solid #f4cd9c;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+ .btn.btn-primary {
+  width: 153px;
+  height: 40px;
+  filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
+  border-color:#BDCEAE ;
+  background: #BDCEAE;
+  border-radius: 10px;
+  font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 25px;
+/* identical to box height, or 125% */
+
+text-transform: uppercase;
+
+color: #2E404B;
+  
+  text-transform: uppercase;
+  
+  color: #2E404B;
+}
+
+#bootstrap-overrides .home-btn-container {
+  width: 50%;
+  height: 4.025em;
+  margin: 0 auto;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 205%;
+  text-transform: uppercase;
+}
+
+#bootstrap-overrides .btn-home-page {
+  width: 100%;
+  height: 3.025em;
+  margin: 0 auto;
+  border-color: #BDCEAE;
+  background: #bdceae;
+  box-shadow: 0px 4px 10px rgba(196, 196, 196, 0.2);
+  border-radius: 10px;
+  color: black;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 205%;
+  text-transform: uppercase;
+}
+
+.home-sub-head {
+  text-align: center;
+    padding: 2%;
+}
+
+#bootstrap-overrides .header-h1 {
+  width: 100%;
+  height: 130px;
+  top: 205px;
+  text-align: center;
+  color: #000000;
+}
+
+#bootstrap-overrides .home-subtitle {
+  width: 100%;
+  height: 4.75em;
+  text-align: center;
+  color: #858789;
+}
+  
+  .hm-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+#bootstrap-overrides .home-hero {
+  width: 100%;
+  height: 25em;
+}
+
+.home-content-p{
+  text-align: center;
+  height: 200px
+}
+/* #home-page-wrapper{
+position: relative;
+width: 375px;
+height: 3031px;
+
+background: #FFFFFF;
+} */
+
+.home-page-content {
+  position: absolute;
+  width: 312px;
+  height: 872.69px;
+  left: 50px;
+  top: 605.04px;
+  border: 2.5px solid #f4cd9c;
+}
+#bootstrap-overrides .home-page-features-header {
+  position: absolute;
+  width: 183px;
+  height: 29px;
+  left: 60px;
+  top: 30.94px;
+  
+  /* h2 */
+  
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  
+  color: #000000;
+  
+}
+.home-content-p-long{
+  text-align: center;
+}
+.closing-content-wrapper{
+  text-align: center;
+}
+.page-footer {
+height: 400px;
+background: rgba(244, 205, 156, 0.4);
+/* position: fixed */
+}
+#bootstrap-overrides .home-about{
+  width: 100%;
+  height: 25em
+}
+.footerlogo{
+  position: absolute;
+    width: 100%;
+    bottom: -650px;
+}
+
+.delete_journal_btn{
+  width: 10%;
+}
+
+.calendar{
+  width: 100%;
+}
+
+#bootstrap-overrides .about-us-subhead{
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .hm-content-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 800px) {
+  .sign-up-btn-container {
+    width: 25%;
+  }
+}
