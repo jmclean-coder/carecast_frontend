@@ -5,7 +5,7 @@ import {Modal} from "react-bootstrap"
 import JournalModal from '../journals/JournalModal'
 import { Container, Accordion, Card, Button } from "react-bootstrap";
 import { ReactComponent as Plus } from "../../assets/BookPlus.svg";
-
+import './dashboard.css'
 export default function JournalAccordion(props) {
 
   const [show, setShow] = useState(false);
