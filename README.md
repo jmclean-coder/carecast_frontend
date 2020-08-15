@@ -53,15 +53,15 @@ If you have the above dependencies:
 
 If you do not have the above dependencies:
 
-First, if you do not currently have Node Package Manager (NPM), [follow their guide here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+First, if you do not currently have the latest version of Node Package Manager (NPM), [follow their guide here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 <br />
 
 Next, to install ReactJS, React Bootstrap, and React Router, in a terminal navigate to the directory in which you installed this repo, then execute in order
 
-- `npm install react react-dom --save`
-- `npm install webpack webpack-dev-server webpack-cli --save`
+- `npm install react react-dom`
+- `npm install webpack webpack-dev-server webpack-cli`
 - `npm install react-bootstrap bootstrap`
-- `npm install --save react-router-dom`
+- `npm install react-router-dom`
   
 Finally:
 
