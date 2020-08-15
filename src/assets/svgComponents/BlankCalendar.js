@@ -9,7 +9,6 @@ class BlankCalendar extends React.Component {
   
   state = {
     today: new Date(),
-    // currentMonth: new Date().getMonth(),
     currentMonth: new Date().getMonth(),
     currentYear: new Date().getFullYear(),
     selectedMonth: "",
@@ -36,7 +35,7 @@ handleNext = (e) =>{
       })
       )
   }
-
+//not using for now
 // handleNext = (e) =>{
 //     e.persist()
 //     if(this.state.currentMonth < 11){
@@ -54,37 +53,7 @@ handleNext = (e) =>{
     })
     )
   }
-//  handlePrev = (e) => {
-//     e.persist()
-//     if(this.state.currentMonth > 0 )
-//     this.setState({
-//       // today
-//       currentMonth: this.state.currentMonth - 1
-//     })
-//   }
-  
-// setCurrent= () => {
-//   const date = new Date()
-// const current = date.getDate()
-// this.setState({ today: current})
-// console.log(current)
-// return current
-//   }
-//   setYear = () =>{
-// const date = new Date()
-// const year = date.getYear()
-// this.setState({ currentYear: year})
-// console.log(year);
-// return year
-//   }
 
-//   setMonth = () =>{
-// const date = new Date()
-// const month = date.getMonth();
-// console.log(month);
-// this.setState({ currentMonth: month})
-// return month
-//   }
 
   daysInMonth = (iMonth, iYear) => {
     return 32 - new Date(iYear, iMonth, 32).getDate();
@@ -97,8 +66,6 @@ renderMonth = () =>{
     }
   })
 }
-
-
 
 componentDidMount(){
   this.populateCalendar(this.state.currentYear, this.state.currentMonth)
@@ -165,7 +132,7 @@ populateCalendar = (year, month) => {
             
             //if the month, year, and date of the foundFeeling's creation matches the currently displayed month, year, and date
             //color those cells
-            //currentCell.attributes.date.value == feelDate && currentCell.attributes.date.value <= this.state.today.getDate()
+            currentCell.attributes.date.value == feelDate && currentCell.attributes.date.value <= this.state.today.getDate()
             
             if(feelDate.getUTCFullYear() === this.state.currentYear && feelDate.getUTCMonth() === this.state.currentMonth && feelDate.getUTCDate() === date){
               foundFeeling.need_condition === "satisfied" ? satisfiedCount += 1 : unsatisfiedCount += 1
