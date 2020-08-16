@@ -176,10 +176,11 @@ color: #2E404B;
 .closing-content-wrapper{
   display: flex;
   flex-wrap: wrap;
-  padding: 1.4em;
+  padding: 0 1.4em 1.4em 1.4em;
 }
+
 .page-footer {
-height: 400px;
+height: 38.875em;
 background: rgba(244, 205, 156, 0.4);
 }
 
@@ -190,6 +191,21 @@ background: rgba(244, 205, 156, 0.4);
 
 .footerlogo{
 }
+.hm-footer-c{
+  text-align: center;
+  padding-top: 3em;
+}
+/* .hm-footer-s{
+  text-align: center;
+
+}
+.hm-footer-sc{
+  text-align: center;
+}
+
+.hm-footer-brand{
+  text-align: center;
+} */
 
 .delete_journal_btn{
   width: 10%;
