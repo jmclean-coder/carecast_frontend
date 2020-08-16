@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {Link } from "react-router-dom"
 import { api } from "../../services/api";
 import './homepage.css'
 
@@ -35,25 +36,13 @@ export default class LoginForm extends React.Component {
     e.target.reset()
   };
 
-  renderButton = () => {
-    if(this.state.fields.fullname === "" || this.state.fields.username=== "" || this.state.password === ""){
-      return(
-        <div className="login-btn-container">
-      <Button disabled variant="primary" type="submit">
-        Submit
-      </Button>
-      </div>
-      )
-    } else{
-      return( 
-        <div className="login-btn-container">
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-      </div>
-      )
-    }
-}
+
+  isFormValid = () => {
+    const {username, password} = this.state.fields
+    return username && password
+  }
+    
+
 
   render() {
     // console.log(api)
@@ -81,11 +70,15 @@ export default class LoginForm extends React.Component {
             value={fields.password}
           />
         </Form.Group>
-     {this.renderButton()}
+        <div className="login-btn-container">
+      <Button disabled={!this.isFormValid()} variant="primary" type="submit">
+        SIGN IN
+      </Button>
+  </div>
       </Form>
       <div className="text-center u-entry">
 
-      <p>New to Care Cast? <a href="/signup">Sign up.</a></p>
+      <p>New to Care Cast? <Link as={"a"} to="/signup">Sign up.</Link></p>
       </div>
       </div>
     );
