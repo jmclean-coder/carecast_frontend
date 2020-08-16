@@ -23,7 +23,9 @@ function HomePage(props) {
         </div>
 
         <div className="home-btn-container">
-        <Button className="btn-home-page" onClick={()=> props.history.push("/signup")}>Signup</Button>
+        <Link to="/signup">
+        <Button variant="primary" className="btn-home-page" >Signup</Button>
+        </Link>
         </div>
 
 
@@ -56,7 +58,7 @@ function HomePage(props) {
         
         <div className='closing-content-wrapper'>
         <HomepageAboutImg className="home-about"/>
-          <p className="home-content-p">
+          <p className="home-content-p-long">
           CareCast loves to do one thing, take care of you! You know who you are, you're the hardworking busybody, the person seeking inner connection, the envrionmentalist that's doing their part to save trees. You have a lot on your plate, and we're here to help you make sense of it in the good times and bad times. Because we <em>care.</em> 
           </p>
           <div className="home-btn-container">
