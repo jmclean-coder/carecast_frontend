@@ -21,7 +21,7 @@ export default function Footer() {
           <div className="hm-footer-c">
             <FlowerHeartLogoMobile className="footerlogo"/>
             <h3 style={{color: "#262626"}}>Care Cast</h3>
-            <p style={{ fontStyle: "normal", fontWeight: "normal", fontSize: "0.875em" }}>Copyright © 2020 Care Cast</p>
+            <p style={{ fontStyle: "normal", fontWeight: "normal", fontSize: "0.875em", color: "#858789"}}>Copyright © 2020 Care Cast</p>
           </div>
         
         </div>
