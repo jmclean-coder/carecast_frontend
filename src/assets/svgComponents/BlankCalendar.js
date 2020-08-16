@@ -18,14 +18,9 @@ class BlankCalendar extends React.Component {
   "July", "August", "September", "October", "November", "December"
 ];
 
-
-
-
-
    handleClick = (e) =>{
     e.persist()
     console.log(e.target)
-    // console.log(this.monthRef)
   }
 handleNext = (e) =>{
     e.persist()
@@ -101,9 +96,17 @@ populateCalendar = (year, month) => {
 
     for(let j = 0; j < weeks.length; j++){
       let currentCell = weeks[j]
+
+      if(currentCell.attributes.date == undefined){
+        currentCell.textContent = date
+        continue
+      }
+
       currentCell.style.fill="#D9D9D9"
-      currentCell.attributes.date.value = "blank"
-      
+      if(currentCell.attributes.date){
+        currentCell.attributes.date.value = "blank"
+      }
+
       if (i === 0 && j < firstDay ){
         continue
       } else if( date > this.daysInMonth(month, year)){
@@ -112,7 +115,9 @@ populateCalendar = (year, month) => {
 
         currentCell.attributes.date.value = date
 
-        if (date === this.state.today.getDate() && year === new Date().getFullYear() && month === new Date().getMonth()) {
+        // debugger 
+        console.log("")
+        if (date === new Date().getDate() && year === new Date().getFullYear() && month === new Date().getMonth()) {
           currentCell.style.width = "37"
           currentCell.style.height = "37"
           currentCell.style.rx = "2.5"
@@ -120,6 +125,12 @@ populateCalendar = (year, month) => {
           currentCell.style.strokeWidth = "5"
           currentCell.style.x = parseInt(currentCell.attributes.x.value) + 2.5 
           currentCell.style.y = parseInt(currentCell.attributes.y.value) + 2.5 
+        } else {
+          currentCell.style.width = "42"
+          currentCell.style.height = "42"
+          currentCell.style.rx = "5"
+          currentCell.style.stroke= ""
+          currentCell.style.strokeWidth = "0"
         }
         
 
@@ -132,9 +143,9 @@ populateCalendar = (year, month) => {
             
             //if the month, year, and date of the foundFeeling's creation matches the currently displayed month, year, and date
             //color those cells
-            currentCell.attributes.date.value == feelDate && currentCell.attributes.date.value <= this.state.today.getDate()
+            // if(currentCell.attributes.date.value == feelDate && currentCell.attributes.date.value <= this.state.today.getDate()
             
-            if(feelDate.getUTCFullYear() === this.state.currentYear && feelDate.getUTCMonth() === this.state.currentMonth && feelDate.getUTCDate() === date){
+            if(feelDate.getFullYear() === this.state.currentYear && feelDate.getMonth() === this.state.currentMonth && feelDate.getDate() === date){
               foundFeeling.need_condition === "satisfied" ? satisfiedCount += 1 : unsatisfiedCount += 1
               if (satisfiedCount === unsatisfiedCount){
                 currentCell.style.fill = "#D5AC9C"
@@ -146,9 +157,10 @@ populateCalendar = (year, month) => {
             } else if(currentCell.attributes.date.value > this.state.today.getDate()){
               break
             }
-        // debugger
-        }
-        date++
+          }
+          
+          date++
+          // debugger
       }
       
     }
@@ -189,7 +201,7 @@ populateCalendar = (year, month) => {
     </g>
     <g id="month" ref={this.monthRef} onClick={this.handleClick}>
       
-      <g id="week1">
+      <g id="week1"> 
       <rect id="1_1" date={"blank"} width="42" height="42" x="11" y="85" fill="#D9D9D9" rx="5"></rect>
       <rect id="2_1" date={"blank"} width="42" height="42" x="59" y="85" fill="#D9D9D9" rx="5"></rect>
       <rect id="3_1" date={"blank"} width="42" height="42" x="107" y="85" fill="#D9D9D9" rx="5"></rect>
