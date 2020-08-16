@@ -1,6 +1,6 @@
 # About CareCast
 
-CareCast is self-care and enrichment web application featuring a soothing, mobile first design. My motivation to create this app is stems from my experiences learning to level up my self-care skills, particularly in regard to Emotional Granularity. You can read more about Emotional Granularity at [this Wikipedia page](https://en.wikipedia.org/wiki/Emotional_granularity) and [this Psychology Today article](https://www.psychologytoday.com/us/blog/the-mindful-self-express/201906/master-your-feelings-new-tools-inspired-neuroscience).
+CareCast is self-care and enrichment web application featuring a soothing, mobile first design. My motivation to create this app stems from my experiences learning to level up my self-care skills, particularly in regard to Emotional Granularity. You can read more about Emotional Granularity at [this Wikipedia page](https://en.wikipedia.org/wiki/Emotional_granularity) and [this Psychology Today article](https://www.psychologytoday.com/us/blog/the-mindful-self-express/201906/master-your-feelings-new-tools-inspired-neuroscience).
 
 The backend of the application leverages Ruby on Rails API functionality to receive and send AJAX requests in a JSON format. The interactive frontend is built with ReactJS and styled with React Bootstrap for a responsive design.
 
