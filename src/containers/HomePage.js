@@ -8,10 +8,7 @@ import { ReactComponent as BoxSmileyBig} from "../assets/svgComponents/Icons/Box
 import { ReactComponent as RedPen} from "../assets/svgComponents/Icons/RedPen.svg";
 import { ReactComponent as Book} from "../assets/svgComponents/Icons/Book.svg";
 // import './App.css';
-
-import bookIcon from '@iconify/icons-cil/book'
-import writeIcon from '@iconify/icons-jam/write';
-import Footer from '../components/homepage/Footer'
+import Footer from '../containers/Footer'
 
 function HomePage(props) {
   return (
