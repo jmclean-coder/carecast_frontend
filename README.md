@@ -48,7 +48,7 @@ If you have the above dependencies:
 <br />
 - Fork and clone this repository to your desired install directory. 
 - Navigate to that directory and open it in your code editor
-- In your terminal run `npm i` to install require all other node packages
+- In your terminal run `npm install` to install require all other node packages
 <br />
 
 If you do not have the above dependencies:
@@ -63,9 +63,7 @@ Next, to install ReactJS, React Bootstrap, and React Router, in a terminal navig
 - `npm install react-bootstrap bootstrap`
 - `npm install react-router-dom`
   
-Finally:
-
-```npm install```
+Finally, to install all other require node packages, run `npm install`.
 
 ---
 
