@@ -75,7 +75,7 @@ color: #2E404B;
 }
 
 #bootstrap-overrides .home-btn-container {
-  width: 100%;
+  width: 50%;
   margin: 0 auto;
   font-family: Montserrat;
   font-style: normal;
@@ -134,9 +134,9 @@ color: #2E404B;
   padding-left: 4em;
 }
 
-.home-content-p{
-/* margin: 2em */
-}
+/* .home-content-p{
+} */
+
 .hm-line-divider{
   border: 0.03125em solid #D9D9D9;
   width: 17.75em;
