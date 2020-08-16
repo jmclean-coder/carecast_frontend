@@ -289,11 +289,23 @@ export default class App extends React.Component {
           .then((res) => console.log(res))
     );
   };
+
+
+  renderNavbar = () => (
+    <>
+    <Route path='/' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
+    <Route path='/dashboard' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
+    <Route path='/feeling_tracker' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
+    <Route path='/todos' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
+    <Route path='/journal' eaxct render={() =><HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
+    </>
+  )
+
   render() {
     return (
       <div className="App">
         <Router>
-          <HomeNavBar onLogout={this.logout} />
+        {this.renderNavbar()}
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route
