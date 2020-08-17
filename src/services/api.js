@@ -1,5 +1,6 @@
 const API_ROOT = `http://localhost:3000/api/v1`;
-const QUOTES_API =  `https://quotes.rest/qod?category=students&language=en`
+const CORS_PROXY = `https://floating-wildwood-76961.herokuapp.com/`
+const AFFIRMATIONS_API =  `https://www.affirmations.dev`
 const token = () => localStorage.getItem("token");
 
 
@@ -94,8 +95,8 @@ const postUserJournal = data => {
     })
     .then(res => res.json())
 }
-const fetchAffirmations = () =>{
-    return fetch(QUOTES_API)
+const fetchAffirmation = () =>{
+    return fetch(CORS_PROXY + AFFIRMATIONS_API)
     .then(res => res.json())
 }
 const patchJournal = (data, id) =>{
@@ -136,8 +137,8 @@ export const api ={
     journals:{
         postUserJournal,
     },
-    affirmations:{
-        fetchAffirmations,
+    affirmation:{
+        fetchAffirmation,
     },
     ratings:{
         postRating
