@@ -30,15 +30,6 @@ handleNext = (e) =>{
       })
       )
   }
-//not using for now
-// handleNext = (e) =>{
-//     e.persist()
-//     if(this.state.currentMonth < 11){
-//       this.setState({
-//         currentMonth: this.state.currentMonth + 1
-//       })
-//     }
-//   }
 
  handlePrev = (e) => {
     e.persist()
@@ -96,11 +87,6 @@ populateCalendar = (year, month) => {
 
     for(let j = 0; j < weeks.length; j++){
       let currentCell = weeks[j]
-
-      if(currentCell.attributes.date == undefined){
-        currentCell.textContent = date
-        continue
-      }
 
       currentCell.style.fill="#D9D9D9"
       if(currentCell.attributes.date){
