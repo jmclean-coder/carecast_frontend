@@ -20,6 +20,8 @@ const JournalWithLoading = LoaderHOC(JournalPage);
 const FeelingWithLoading = LoaderHOC(FeelingPage);
 const ListWithLoading = LoaderHOC(ListPage);
 
+
+
 export default class App extends React.Component {
   state = {
     auth: {
@@ -29,7 +31,7 @@ export default class App extends React.Component {
     userData: {},
     categories: [],
     feelings: [],
-    quotes: [],
+    affirmation: "",
     loading: false,
   };
   //each time app mounts checks to see if authorized to access so you don't have to login again
@@ -48,7 +50,7 @@ export default class App extends React.Component {
         this.getUserData(user.id);
         this.getCategories();
         this.getFeelings();
-        this.getQuotes();
+        this.getAffirmation();
       });
     }
     console.log(this.state, 1);
@@ -69,7 +71,7 @@ export default class App extends React.Component {
     this.getUserData(data.id);
     this.getCategories();
     this.getFeelings();
-    this.getQuotes();
+    this.getAffirmation();
   };
 
   //initial login, user is who they say they are authentication. set's token
@@ -90,7 +92,7 @@ export default class App extends React.Component {
     this.getUserData(data.id);
     this.getCategories();
     this.getFeelings();
-    this.getQuotes();
+    this.getAffirmation();
   };
 
   logout = () => {
@@ -109,7 +111,6 @@ export default class App extends React.Component {
       .fetchUserData(id)
 
       .then((res) => {
-        console.log(res);
         const {
           full_name,
           journal_entries,
@@ -156,10 +157,11 @@ export default class App extends React.Component {
     });
   };
 
-  getQuotes = () => {
-    api.affirmations.fetchAffirmations().then((res) => {
+  getAffirmation = () => {
+    api.affirmation.fetchAffirmation().then((data) => {
+      console.log(data)
       this.setState({
-        quotes: res,
+        affirmation: data.affirmation,
       });
     });
   };
@@ -261,9 +263,6 @@ export default class App extends React.Component {
         }));
       });
     }
-
-    // console.log(data);
-    // debugger
   };
 
   decrementRating = (categoryId) => {
@@ -339,7 +338,7 @@ export default class App extends React.Component {
                   addFeeling={this.addFeeling}
                   addJournalEntry={this.addJournalEntry}
                   updateJournalEntry={this.updateJournalEntry}
-                  quoteOfDay={this.state.quotes}
+                  affirmation={this.state.affirmation}
                   user={this.state.auth.user}
                 />
               )}
