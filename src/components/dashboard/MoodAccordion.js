@@ -1,13 +1,8 @@
 import React, {useState} from 'react'
-import {
-    Container,
-    Accordion,
-    Card,
-    Button,
-    Modal
-  } from "react-bootstrap";
+import { Accordion, Card, Button, Modal } from "react-bootstrap";
   import MoodCard from '../feeling tracker/MoodCard'
   import MoodModal from '../feeling tracker/MoodModal'
+  import { v4 as uuidv4 } from 'uuid';
   import {Link} from 'react-router-dom'
   import { ReactComponent as Plus } from "../../assets/BookPlus.svg";
   import './dashboard.css'
@@ -18,7 +13,7 @@ export default function MoodAccordion(props) {
 
 
     const renderMoodCards = () =>{
-        return props.userFeelings.map(feeling => <MoodCard feelingList={props.feelings} feeling={feeling} key={`feeling_${feeling.id}`}/>)
+        return props.userFeelings.map(feeling => <MoodCard feelingList={props.feelings} feeling={feeling} key={`feeling_${uuidv4()}`}/>)
 
     }
     // const buildFeelingsList = () =>{

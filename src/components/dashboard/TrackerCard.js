@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Accordion,
-  Card,
-  ListGroup,
-  Button,
-} from "react-bootstrap";
 import "./dashboard.css";
-
+import { Container, Card, Button } from "react-bootstrap";
 import { ReactComponent as Plus } from "../../assets/BookPlus.svg";
 import { ReactComponent as Minus } from "../../assets/BookMinus.svg";
 
@@ -38,11 +29,11 @@ export default class TrackerCard extends React.Component {
     return this.props.category.detailed ? (
       <Card className={`${this.props.category.name}`}>
         <Card.Body>
-          <Card.Title className="tracker-title">{this.props.category.name}</Card.Title>
+          <Card.Title className="tracker-title">
+            {this.props.category.name}
+          </Card.Title>
 
-          <Container
-            onClick={() => this.props.incrementRating(this.props.category.id)}
-          >
+          <Container onClick={() => this.props.incrementRating(this.props.category.id)}>
             <Plus className="plus" as={Button} name="plusBtn" />
           </Container>
 
@@ -54,26 +45,32 @@ export default class TrackerCard extends React.Component {
           )}
 
           <Container
-            onClick={() => this.props.decrementRating(this.props.category.id)}
-          >
+            onClick={() => this.props.decrementRating(this.props.category.id)}>
             <Minus className="minus" as={Button} name="minusBtn" />
           </Container>
         </Card.Body>
       </Card>
     ) : (
-      <Card className={`${this.props.category.name}`} >
+      <Card className={`${this.props.category.name}`}>
         <Card.Body>
-          <Card.Title className="tracker-title">{this.props.category.name}</Card.Title>
+          <Card.Title className="tracker-title">
+            {this.props.category.name}
+          </Card.Title>
 
-          <Container >
-            <Plus className="plus" onClick={() => this.props.incrementRating(this.props.category.id)} as={Button} /> <Minus  className="minus" onClick={() => this.props.decrementRating(this.props.category.id)} as={Button} />
+          <Container>
+            <Plus
+              className="plus"
+              onClick={() => this.props.incrementRating(this.props.category.id)}
+              as={Button}
+            />{" "}
+            <Minus
+              className="minus"
+              onClick={() => this.props.decrementRating(this.props.category.id)}
+              as={Button}
+            />
           </Container>
 
           <Card.Text className="tracker-text">{ratingNum}/10</Card.Text>
-
-          
-          
-        
         </Card.Body>
       </Card>
     );

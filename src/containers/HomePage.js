@@ -7,7 +7,7 @@ import { ReactComponent as HomepageAboutImg } from "../assets/svgComponents/imag
 import { ReactComponent as BoxSmileyBig} from "../assets/svgComponents/Icons/BoxsmileyBig.svg";
 import { ReactComponent as RedPen} from "../assets/svgComponents/Icons/RedPen.svg";
 import { ReactComponent as Book} from "../assets/svgComponents/Icons/Book.svg";
-// import './App.css';
+
 import Footer from '../containers/Footer'
 
 function HomePage(props) {

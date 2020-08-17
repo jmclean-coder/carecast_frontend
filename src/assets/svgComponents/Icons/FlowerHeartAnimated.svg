@@ -1,0 +1,75 @@
+<svg id="eg5grdhrwqf51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 102 83" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+    <style>
+        #eg5grdhrwqf52_to {
+            animation: eg5grdhrwqf52_to__to 3000ms linear 1 normal forwards
+        }
+
+        @keyframes eg5grdhrwqf52_to__to {
+            0% {
+                transform: translate(35.218192px, 61.754793px);
+                animation-timing-function: cubic-bezier(0.420000, 0, 0.580000, 1)
+            }
+
+            33.333333% {
+                transform: translate(0.001800px, -0px)
+            }
+
+            100% {
+                transform: translate(0.001800px, -0px)
+            }
+        }
+
+        #eg5grdhrwqf52_ts {
+            animation: eg5grdhrwqf52_ts__ts 3000ms linear 1 normal forwards
+        }
+
+        @keyframes eg5grdhrwqf52_ts__ts {
+            0% {
+                transform: scale(0.300000, 0.300000);
+                animation-timing-function: cubic-bezier(0.420000, 0, 0.580000, 1)
+            }
+
+            33.333333% {
+                transform: scale(1, 1)
+            }
+
+            100% {
+                transform: scale(1, 1)
+            }
+        }
+
+        #eg5grdhrwqf52 {
+            animation: eg5grdhrwqf52_c_o 3000ms linear 1 normal forwards
+        }
+
+        @keyframes eg5grdhrwqf52_c_o {
+            0% {
+                opacity: 0;
+                animation-timing-function: cubic-bezier(0.420000, 0, 0.580000, 1)
+            }
+
+            33.333333% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+    </style>
+    <g id="eg5grdhrwqf52_to" transform="translate(35.218192,61.754793)">
+        <g id="eg5grdhrwqf52_ts" transform="scale(0.300000,0.300000)">
+            <path id="eg5grdhrwqf52"
+                d="M71.317590,7.756840C70.122714,6.565810,68.704118,5.621010,67.142599,4.976390C65.581180,4.331780,63.907650,4,62.217460,4C60.527269,4,58.853640,4.331780,57.292221,4.976390C55.730802,5.621010,54.312106,6.565810,53.117330,7.756840L50.637548,10.227500L48.157866,7.756840C45.744326,5.352170,42.470937,4.001250,39.057736,4.001250C35.644535,4.001250,32.371045,5.352170,29.957606,7.756840C27.544066,10.161500,26.188200,13.422900,26.188200,16.823600C26.188200,20.224400,27.544066,23.485800,29.957606,25.890500L32.437288,28.361100L50.637548,46.494700L68.837807,28.361100L71.317590,25.890500C72.512968,24.700000,73.461241,23.286500,74.108211,21.730800C74.755180,20.175100,75.088200,18.507600,75.088200,16.823600C75.088200,15.139700,74.755180,13.472200,74.108211,11.916500C73.461241,10.360800,72.512968,8.947310,71.317590,7.756840L71.317590,7.756840Z"
+                transform="translate(0,0)" opacity="0" fill="none" stroke="rgb(237,137,137)" stroke-width="8"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+    </g>
+    <path id="eg5grdhrwqf53"
+        d="M47.722800,74.168300C26.542400,74.030000,8.360370,58.773400,4.546170,37.938800C25.726600,38.077200,43.908600,53.333800,47.722800,74.168300Z"
+        fill="none" stroke="rgb(189,206,174)" stroke-width="8" stroke-linejoin="round" />
+    <path id="eg5grdhrwqf54"
+        d="M53.465300,74.168300C74.645700,74.030000,92.827800,58.773400,96.642000,37.938800C75.461600,38.077200,57.279500,53.333800,53.465300,74.168300Z"
+        fill="none" stroke="rgb(189,206,174)" stroke-width="8" stroke-linejoin="round" />
+</svg>

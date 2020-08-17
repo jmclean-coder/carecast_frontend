@@ -1,5 +1,5 @@
 import React from "react";
-import {Navbar, Nav, Button, Container} from "react-bootstrap/";
+import { Navbar, Nav, Button, Container } from "react-bootstrap/";
 
 import { Link } from "react-router-dom";
 import { ReactComponent as FlowerHeartLogoMobile } from "../../assets/svgComponents/Icons/FlowerHeartLogoMobile.svg";
@@ -10,23 +10,26 @@ export default function HomeNavBar(props) {
   const handleLogout = () => props.onLogout();
 
   return (
-    <Navbar collapseOnSelect expand="lg"
-    style={{backgroundColor: "white", height: "10.8125em" }} 
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      style={{ backgroundColor: "white", height: "10.8125em" }}
     >
-      
-      <Container style={{marginLeft: "0.5em",
-    marginRight: "auto"}}>
-      
-     
-      <Navbar.Brand as={Link} to="/" style={{float: "right"}}>
-        <FlowerHeartLogoMobile />
-      </Navbar.Brand>
-     
+      <Container style={{ marginLeft: "0.5em", marginRight: "auto" }}>
+        <Navbar.Brand as={Link} to="/" style={{ float: "right" }}>
+          <FlowerHeartLogoMobile />
+        </Navbar.Brand>
 
-      <Link to="/login">
-      <Button variant="secondary" style={{textDecoration: "none", width:"7em", height: "2.75em"}}><p style={{color: "#2E404B", fontSize: "1em", fontWeight: 600}}>SIGN IN</p></Button>
-      </Link>
-
+        <Link to="/login">
+          <Button
+            variant="secondary"
+            style={{ textDecoration: "none", width: "7em", height: "2.75em" }}
+          >
+            <p style={{ color: "#2E404B", fontSize: "1em", fontWeight: 600 }}>
+              SIGN IN
+            </p>
+          </Button>
+        </Link>
       </Container>
 
       {props.loggedIn ? (
