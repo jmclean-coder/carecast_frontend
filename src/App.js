@@ -8,6 +8,7 @@ import ListPage from "./containers/ListPage";
 import SignupPage from "./containers/SignupPage";
 import HomeNavBar from "./components/homepage/HomeNavBar";
 import LoaderHOC from "./HOCs/LoaderHOC";
+import Footer from './containers/Footer'
 import {
   BrowserRouter as Router,
   Route,
@@ -300,6 +301,16 @@ export default class App extends React.Component {
     </>
   )
 
+  renderFooter = () => (
+    <>
+    <Route path='/' exact render={() => <Footer />}/>
+    <Route path='/dashboard' exact render={() => <Footer />}/>
+    <Route path='/feeling_tracker' exact render={() => <Footer />}/>
+    <Route path='/todos' exact render={() => <Footer />}/>
+    <Route path='/journal' eaxct render={() =><Footer />}/>
+    </>
+  )
+
   render() {
     return (
       <div className="App">
@@ -386,6 +397,7 @@ export default class App extends React.Component {
               )}
             />
           </Switch>
+        {this.renderFooter()}
         </Router>
       </div>
     );
