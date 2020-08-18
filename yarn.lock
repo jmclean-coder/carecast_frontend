@@ -1127,6 +1127,21 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@iconify/icons-cil@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-cil/-/icons-cil-1.0.4.tgz#8c75909e2e912ec53b3b3b670551d82a1a052dd6"
+  integrity sha512-aazLhKwIp0KuZVk3JTxXubEMmjVVRC38kkw+FxLH3QNK3Tw+/YX2q2ovihAs1eXCqwJzG28dv8hM3looc4666A==
+
+"@iconify/icons-jam@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-jam/-/icons-jam-1.0.5.tgz#fc3fac1a6163cefb68a9bd31531df22bf7825416"
+  integrity sha512-S48G7bmEzj+FCuYtq4syreiPB181T92gyMZ0z1mQedf/5Gg+GfLl0Jtuldi/rmJKEkRbftZX9RuValUFpnLTrQ==
+
+"@iconify/react@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-1.1.3.tgz#ebe4d3e5f5dea23cd6a9634acd7a0a25c7414a59"
+  integrity sha512-ReZNJyr89AfED6XZIXkhsJiNv2taT3j1cTo1HVPHMsrKOz6gAYdXtD2kDWF6+GVoFUxpmnO0fMcA6yCyTf6Tow==
+
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
@@ -11045,6 +11060,11 @@ uuid@^3.0.1, uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+uuid@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.0.tgz#ab738085ca22dc9a8c92725e459b1d507df5d6ea"
+  integrity sha512-fX6Z5o4m6XsXBdli9g7DtWgAx+osMsRRZFKma1mIUsLCz6vRvv+pz5VNbyu9UEDzpMWulZfvpgb/cmDXVulYFQ==
 
 v8-compile-cache@^2.0.3:
   version "2.1.0"

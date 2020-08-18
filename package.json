@@ -2,6 +2,12 @@
   "name": "carecast_client",
   "version": "0.1.0",
   "private": true,
+
+  "engines": {
+
+    "yarn": "1.x",
+    "node": "13.x"
+ },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
