@@ -10,71 +10,76 @@ export default function HomeNavBar(props) {
   const handleLogout = () => props.onLogout();
 
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      style={{ backgroundColor: "white", height: "10.8125em" }}
-    >
-      <Container style={{ marginLeft: "0.5em", marginRight: "auto" }}>
-        <Navbar.Brand as={Link} to="/" style={{ float: "right" }}>
-          <FlowerHeartLogoMobile />
-        </Navbar.Brand>
+    <div className="header">
+        <div className="nav-logo">
+        <FlowerHeartLogoMobile className="logo-main"/>
+        </div>
+    
+      <Navbar className="header-nav"
+      sticky="top"
+        collapseOnSelect
+        expand="lg"
+        style={{ backgroundColor: "white"}} 
+      >
+        {props.loggedIn ? (
+          <>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse
+              className="justify-content-end"
+              id="basic-navbar-nav"
+            >
+              <Container className="text-center" >
+              <Nav>
+                {token ? (
+                  <Nav.Link as={Link} to="/dashboard">
+                    Dashboard
+                  </Nav.Link>
+                ) : null}
 
-        <Link to="/login">
-          <Button
-            variant="secondary"
-            style={{ textDecoration: "none", width: "7em", height: "2.75em" }}
-          >
-            <p style={{ color: "#2E404B", fontSize: "1em", fontWeight: 600 }}>
-              SIGN IN
-            </p>
-          </Button>
-        </Link>
-      </Container>
+                {token ? (
+                  <Nav.Link as={Link} to="/journal">
+                    Journal
+                  </Nav.Link>
+                ) : null}
 
-      {props.loggedIn ? (
-        <>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse
-            className="justify-content-end"
-            id="basic-navbar-nav"
-          >
-            <Nav>
-              {token ? (
-                <Nav.Link as={Link} to="/dashboard">
-                  Dashboard
-                </Nav.Link>
-              ) : null}
+                {token ? (
+                  <Nav.Link as={Link} to="/feeling_tracker">
+                    Feelings Tracker
+                  </Nav.Link>
+                ) : null}
 
-              {token ? (
-                <Nav.Link as={Link} to="/journal">
-                  Journal
-                </Nav.Link>
-              ) : null}
+                {token ? (
+                  <Nav.Link as={Link} to="/todos">
+                    To-Do List
+                  </Nav.Link>
+                ) : null}
 
-              {token ? (
-                <Nav.Link as={Link} to="/feeling_tracker">
-                  Feelings Tracker
-                </Nav.Link>
-              ) : null}
+                {token ? (
+                  <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>
+                ) : (
+                  <Nav.Link as={Link} to="/login">
+                    Login
+                  </Nav.Link>
+                )}
+              </Nav>
+              </Container>
+            </Navbar.Collapse>
+          </>
+        ) : null}
+      </Navbar>
 
-              {token ? (
-                <Nav.Link as={Link} to="/todos">
-                  To-Do List
-                </Nav.Link>
-              ) : null}
-
-              {token ? (
-                <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>
-              ) : (
-                <Nav.Link as={Link} to="/login">
-                  Login
-                </Nav.Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-        </>
+      {!token ? (
+        <Button
+          as={Link}
+          to="/login"
+          variant="secondary"
+          style={{ textDecoration: "none", width: "7em", height: "2.75em" }}
+        >
+          <p style={{ color: "#2E404B", fontSize: "1em", fontWeight: 600 }}>
+            SIGN IN
+          </p>
+        </Button>
       ) : null}
-    </Navbar>
+    </div>
   );
 }

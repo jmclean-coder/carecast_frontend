@@ -12,6 +12,8 @@ export default function MoodAccordion(props) {
   const handleShow = () => setShow(true);
 
 
+
+
     const renderMoodCards = () =>{
         return props.userFeelings.map(feeling => <MoodCard feelingList={props.feelings} feeling={feeling} key={`feeling_${uuidv4()}`}/>)
 
@@ -21,9 +23,9 @@ export default function MoodAccordion(props) {
     // }
 
     return (
-        <Accordion>
-        <Card>
-          <Accordion.Toggle as={Card.Header} bg="dark" eventKey="0">
+        <Accordion className="accord-mood">
+        <Card className="accord-button">
+          <Accordion.Toggle  as={Card.Header}  style={props.accordStyle}  eventKey="0">
             Mood
           </Accordion.Toggle>
           <Accordion.Collapse className="mood_accordion" eventKey="0">

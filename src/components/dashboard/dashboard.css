@@ -101,3 +101,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+.accord-button{
+    background: #FFFFFF;
+    border: 3px solid #BDCEAE;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }

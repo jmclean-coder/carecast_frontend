@@ -65,10 +65,6 @@ function HomePage(props) {
           <Button className='btn-home-page'>Learn More</Button>
           </div>
         </div>
-     
-
-
-      <Footer/>
     </div>
   );
 }

@@ -23,9 +23,9 @@ export default function JournalAccordion(props) {
     ));
   };
   return (
-    <Accordion>
-      <Card>
-        <Accordion.Toggle as={Card.Header} bg="dark" eventKey="3">
+    <Accordion className="accord-journal">
+      <Card className="accord-button">
+        <Accordion.Toggle  as={Card.Header}  style={props.accordStyle}  eventKey="3">
           Journal{" "}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="3">

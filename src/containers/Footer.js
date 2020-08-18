@@ -1,8 +1,11 @@
 import React from 'react'
+import {Container} from 'react-bootstrap'
 import {ReactComponent as FlowerHeartLogoMobile} from '../assets/svgComponents/Icons/FlowerHeartLogoMobile.svg'
 export default function Footer() {
     return (
-        <div className="page-footer">
+      <div id="footer-wrapper" >
+        <Container className="page-footer"
+        sticky="bottom" >
             <div className="hm-footer-c">
             <h3 style={{color: "#262626"}}>Company</h3>
             <p>About Us </p>
@@ -23,7 +26,7 @@ export default function Footer() {
             <h3 style={{color: "#262626"}}>Care Cast</h3>
             <p style={{ fontStyle: "normal", fontWeight: "normal", fontSize: "0.875em", color: "#858789"}}>Copyright © 2020 Care Cast</p>
           </div>
-        
-        </div>
+        </Container>
+          </div>
     )
 }
