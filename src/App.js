@@ -112,6 +112,7 @@ export default class App extends React.Component {
       .fetchUserData(id)
 
       .then((res) => {
+        console.log(res)
         const {
           full_name,
           journal_entries,

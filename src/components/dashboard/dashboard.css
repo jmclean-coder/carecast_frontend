@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns:  1fr 1fr;
     grid-gap: 50px;justify-items: center;
+    padding-bottom: 2em;
 }
 .collaspe.show{
     width: 113%;
@@ -92,7 +93,7 @@
 }
 
 .add_mood_btn{
-    position: absolute;
+float: left;
     top: 6.8%;
     left: 16%;
 }

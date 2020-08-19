@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Accordion, Card, Button, Modal } from "react-bootstrap";
+import { Accordion, Card, Button, Modal, Container } from "react-bootstrap";
   import MoodCard from '../feeling tracker/MoodCard'
   import MoodModal from '../feeling tracker/MoodModal'
   import { v4 as uuidv4 } from 'uuid';
@@ -24,29 +24,34 @@ export default function MoodAccordion(props) {
 
     return (
         <Accordion className="accord-mood">
+          <Modal show={show} onHide={handleClose}>
+<MoodModal feelings={props.feelings} addFeeling={props.addFeeling}/> 
+  </Modal>
         <Card className="accord-button">
           <Accordion.Toggle  as={Card.Header}  style={props.accordStyle}  eventKey="0">
-            Mood
+            Today's Moods
           </Accordion.Toggle>
           <Accordion.Collapse className="mood_accordion" eventKey="0">
-            <>
-        <div>
-          <h2>Mood(s)
-          </h2>
-          <div className="add_mood_btn">
+            <Container> 
+       
+              {renderMoodCards()}
+              <div className="mood-btns-wrapper">
+              <div className="add_mood_btn">
           <Plus as={Button} onClick={handleShow} />
           </div>
+              <div className="text-center">
+           <Button variant="link" as={Link} to="/feeling_tracker">See All</Button>
             </div>
-        <Modal show={show} onHide={handleClose}>
-        <MoodModal feelings={props.feelings} addFeeling={props.addFeeling}/> 
-          </Modal>
-            {renderMoodCards()}
-            <div className="text-center">
-        <Button variant="link" as={Link} to="/feeling_tracker">See All</Button>
-            </div>
-          </>
+              </div>
+
+            </Container>
+      
           </Accordion.Collapse>
         </Card>
       </Accordion>
+      
     )
 }
+
+
+      

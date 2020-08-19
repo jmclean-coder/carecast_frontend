@@ -1,7 +1,7 @@
-const API_ROOT = `http://localhost:3000/api/v1`;
+// const API_ROOT = `http://localhost:3000/api/v1`;
 const CORS_PROXY = `https://floating-wildwood-76961.herokuapp.com/`
 const AFFIRMATIONS_API =  `https://www.affirmations.dev`
-// const API_ROOT = `https://carecast-app-api.herokuapp.com/api/v1`
+const API_ROOT = `https://carecast-app-api.herokuapp.com/api/v1`
 const token = () => localStorage.getItem("token");
 
 
