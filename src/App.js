@@ -171,6 +171,7 @@ export default class App extends React.Component {
   addFeeling = (feeling) => {
     console.log(feeling[0]);
     api.feelings.postUserFeeling(feeling[0]).then((resFeeling) => {
+      console.log(resFeeling)
       this.setState((prevState) => ({
         userData: {
           ...prevState.userData,
