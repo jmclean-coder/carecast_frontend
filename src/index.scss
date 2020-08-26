@@ -3,40 +3,13 @@
   font-style: normal;
   font-weight: normal;
 
-  @media screen and (max-width: 62.5em) {
-    .hm-content-wrapper {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media screen and (max-width: 62.5em) {
-    .page-footer {
-      height: 29em;
-      width: 100%;
-      grid-template-rows: 1fr;
-      grid-template-columns: 1fr;
-    }
-
-    .hm-wrapper {
-      padding-bottom: 35em;
-    }
-  }
-
-  @media (min-width: 600px) {
-    .sign-up-btn-container {
-      width: 25%;
-    }
-  }
 //max viewport size
   .App {
     position: relative;
     min-height: 100vh;
   }
 
-  .hm-wrapper {
-    padding-bottom: 35em;
-  }
-
+ 
   #footer-wrapper {
     position: absolute;
     bottom: 0;
@@ -44,6 +17,73 @@
     width: 100%;
     background: rgba(244, 205, 156, 0.4);
   }
+
+  .btn.btn-secondary {
+    width: 245px;
+    height: 44px;
+    filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
+    background: #ffffff;
+    border: 2.5px solid #f4cd9c;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+  .btn.btn-primary {
+    width: 153px;
+    height: 40px;
+    filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
+    border-color: #bdceae;
+    background: #bdceae;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 25px;
+
+    text-transform: uppercase;
+
+    color: #2e404b;
+
+    text-transform: uppercase;
+
+    color: #2e404b;
+  }
+
+  .btn-primary:disabled {
+    background-color: #d9d9d9;
+    border-color: #d9d9d9;
+  }
+
+  .btn-secomdary:disabled {
+    background: #ffffff;
+    border: 2.5px solid #d9d9d9;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+
+
+  .accordion > .card > .card-header {
+    background-color: white;
+    border: 3px solid #BDCEAE;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 1.75em;
+  }
+
+  .dsh-accord-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px;
+    border-radius: 0px;
+}
+  }
+
+
   //
   // 
   //links and text
@@ -93,258 +133,260 @@
   //
   //
 
-  .btn.btn-secondary {
-    width: 245px;
-    height: 44px;
-    filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
-    background: #ffffff;
-    border: 2.5px solid #f4cd9c;
-    box-sizing: border-box;
-    border-radius: 10px;
-  }
-  .btn.btn-primary {
-    width: 153px;
-    height: 40px;
-    filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
-    border-color: #bdceae;
-    background: #bdceae;
-    border-radius: 10px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 25px;
 
-    text-transform: uppercase;
+.home-btn-container {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 205%;
+  text-transform: uppercase;
+  padding: 2em 0 5em;
+}
+.btn-home-page {
+  width: 100%;
+  height: 3.025em;
+  margin: 0 auto;
+  border-color: #bdceae;
+  background: #bdceae;
+  box-shadow: 0px 4px 10px rgba(196, 196, 196, 0.2);
+  border-radius: 10px;
+  color: black;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 205%;
+  text-transform: uppercase;
+}
 
-    color: #2e404b;
 
-    text-transform: uppercase;
 
-    color: #2e404b;
-  }
+.home-sub-head {
+  text-align: center;
+  padding: 2%;
+}
 
-  .btn-primary:disabled {
-    background-color: #d9d9d9;
-    border-color: #d9d9d9;
-  }
+.header-h1 {
+  width: 100%;
+  height: 130px;
+  top: 205px;
+  text-align: center;
+  color: #000000;
+}
 
-  .btn-secomdary:disabled {
-    background: #ffffff;
-    border: 2.5px solid #d9d9d9;
-    box-sizing: border-box;
-    border-radius: 5px;
-  }
+.home-subtitle {
+  width: 100%;
+  height: 4.75em;
+  text-align: center;
+  color: #858789;
+}
 
-  .home-btn-container {
-    width: 50%;
-    margin: 0 auto;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 205%;
-    text-transform: uppercase;
-    padding: 2em 0 5em;
-  }
-  .btn-home-page {
-    width: 100%;
-    height: 3.025em;
-    margin: 0 auto;
-    border-color: #bdceae;
-    background: #bdceae;
-    box-shadow: 0px 4px 10px rgba(196, 196, 196, 0.2);
-    border-radius: 10px;
-    color: black;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 205%;
-    text-transform: uppercase;
-  }
+.hm-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 54.5em;
+}
+.home-hero {
+  width: 90%;
+  height: 25em;
+  padding-left: 4em;
+}
 
-  .home-sub-head {
-    text-align: center;
-    padding: 2%;
-  }
+.home-content-p {
+  width: 70%;
+  margin: 0 auto;
+}
 
-  .header-h1 {
-    width: 100%;
-    height: 130px;
-    top: 205px;
-    text-align: center;
-    color: #000000;
-  }
+.hm-line-divider {
+  border: 0.03125em solid #d9d9d9;
+  width: 17.75em;
+}
 
-  .home-subtitle {
-    width: 100%;
-    height: 4.75em;
-    text-align: center;
-    color: #858789;
-  }
+.hm-content-card {
+  text-align: center;
+}
+.home-page-content {
+  position: absolute;
+  width: 312px;
+  height: 872.69px;
+  left: 50px;
+  top: 605.04px;
+  border: 2.5px solid #f4cd9c;
+}
+.home-page-features-header {
+  position: absolute;
+  width: 183px;
+  height: 29px;
+  left: 60px;
+  top: 30.94px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
 
+  color: #000000;
+}
+.home-content-p-long {
+  margin: auto 0px auto 1.475em;
+  text-align: left;
+  word-break: break-word;
+}
+.closing-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1.4em 1.4em 1.4em;
+}
+
+.page-footer {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 25em;
+  transform: scaleX(-1);
+}
+
+.home-about {
+  width: 100%;
+  height: 20em;
+}
+.nav-link {
+  width: 7em;
+}
+.form-logo {
+  width: 40%;
+  height: 100%;
+  padding-top: 5em;
+}
+.form-logo-signup {
+  width: 40%;
+  height: 100%;
+  padding-top: 5em;
+}
+
+.form-wrapper {
+  padding-top: 5%;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.form-wrapper-signup {
+  padding-top: 5%;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.form-header {
+  text-align: center;
+}
+.login-btn-container {
+  padding-top: 5em;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-control:focus {
+  border: 2px solid #ed8989;
+  box-shadow: 0px 1px 1px #ed8989 inset, 0px 0px 8px #ed8989;
+}
+
+.hm-footer-c {
+  text-align: center;
+  padding-top: 3em;
+  transform: scaleX(-1);
+  float: left;
+}
+
+.delete_journal_btn {
+  width: 10%;
+}
+
+.calendar {
+  width: 100%;
+}
+
+.about-us-subhead {
+  text-align: center;
+  padding-top: 1.5em;
+}
+
+
+.header {
+  display: grid;
+  height: 10.8125em;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+}
+
+.nav-logo {
+  grid-area: 1 / 2 / 2 / 3;
+  z-index: 2000;
+  margin: auto;
+}
+
+.header-nav {
+  grid-area: 1 / 3 / 2 / 1;
+}
+
+.logo-main {
+  width: 10em;
+  height: 7em;
+  z-index: 2000;
+}
+
+
+.dsh-title{
+  grid-row: 2;
+  padding-bottom: 1em;
+}
+
+
+
+.dsh-wrapper {
+  display: grid;
+  text-align: center;
+  padding-bottom: 73.5em;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.dsh-accord-accord{
+  padding-bottom: 3em;
+  width: 80%;
+}
+
+
+
+
+@media screen and (max-width: 62.5em) {
   .hm-content-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: 54.5em;
+    grid-template-columns: 1fr;
   }
-  .home-hero {
-    width: 90%;
-    height: 25em;
-    padding-left: 4em;
-  }
+}
 
-  .home-content-p {
-    width: 70%;
-    margin: 0 auto;
-  }
-
-  .hm-line-divider {
-    border: 0.03125em solid #d9d9d9;
-    width: 17.75em;
-  }
-
-  .hm-content-card {
-    text-align: center;
-  }
-  .home-page-content {
-    position: absolute;
-    width: 312px;
-    height: 872.69px;
-    left: 50px;
-    top: 605.04px;
-    border: 2.5px solid #f4cd9c;
-  }
-  .home-page-features-header {
-    position: absolute;
-    width: 183px;
-    height: 29px;
-    left: 60px;
-    top: 30.94px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-    text-align: center;
-
-    color: #000000;
-  }
-  .home-content-p-long {
-    margin: auto 0px auto 1.475em;
-    text-align: left;
-    word-break: break-word;
-  }
-  .closing-content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 1.4em 1.4em 1.4em;
-  }
-
+@media screen and (max-width: 62.5em) {
   .page-footer {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    height: 25em;
-    transform: scaleX(-1);
-  }
-
-  .home-about {
+    height: 37em;
     width: 100%;
-    height: 20em;
-  }
-  .nav-link {
-    width: 7em;
-  }
-  .form-logo {
-    width: 40%;
-    height: 100%;
-    padding-top: 5em;
-  }
-  .form-logo-signup {
-    width: 40%;
-    height: 100%;
-    padding-top: 5em;
-  }
-
-  .form-wrapper {
-    padding-top: 5%;
-    width: 75%;
-    margin: 0 auto;
-  }
-
-  .form-wrapper-signup {
-    padding-top: 5%;
-    width: 75%;
-    margin: 0 auto;
-  }
-
-  .form-header {
-    text-align: center;
-  }
-  .login-btn-container {
-    padding-top: 5em;
-    text-align: center;
-  }
-
-  .form-group {
-    margin-bottom: 2rem;
-  }
-
-  .form-control:focus {
-    border: 2px solid #ed8989;
-    box-shadow: 0px 1px 1px #ed8989 inset, 0px 0px 8px #ed8989;
-  }
-
-  .hm-footer-c {
-    text-align: center;
-    padding-top: 3em;
-    transform: scaleX(-1);
-    float: left;
-  }
-
-  .delete_journal_btn {
-    width: 10%;
-  }
-
-  .calendar {
-    width: 100%;
-  }
-
-  .about-us-subhead {
-    text-align: center;
-    padding-top: 1.5em;
-  }
-
-  .accord-button {
-    background: #ffffff;
-    border-color: white;
-  }
-
-  .header {
-    display: grid;
-    height: 10.8125em;
-    grid-template-columns: 1fr 2.5fr 1fr;
     grid-template-rows: 1fr;
-    gap: 1px 1px;
+    grid-template-columns: 1fr;
   }
 
-  .nav-logo {
-    grid-area: 1 / 2 / 2 / 3;
-    z-index: 2000;
-    margin: auto;
+  .hm-wrapper {
+    text-align: center;
+    padding-bottom: 39em;
   }
+}
 
-  .header-nav {
-    grid-area: 1 / 3 / 2 / 1;
-  }
-
-  .logo-main {
-    width: 10em;
-    height: 7em;
-    z-index: 2000;
-  }
-  .accordion > .card > .card-header {
-    border-radius: 0;
-    margin-bottom: 2em;
+@media (min-width: 600px) {
+  .sign-up-btn-container {
+    width: 25%;
   }
 }
