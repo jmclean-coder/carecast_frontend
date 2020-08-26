@@ -13,6 +13,7 @@ const headers = () => {
   };
 };
 
+
 const login = data =>{
     return fetch(`${API_ROOT}/login`,{
         method: "POST",
@@ -81,10 +82,14 @@ const fetchFeelings = () =>{
     .then(res => res.json())
 }
 const postUserFeeling = feeling =>{
+
+    // feeling = {
+    //     feeling: feeling
+    // }
     return fetch(`${API_ROOT}/user_feelings`, {
         method: "POST",
         headers: headers(),
-        body: JSON.stringify(feeling)
+        body: JSON.stringify({user_feeling: { feeling}})
     })
 .then(res => res.json())
 }
