@@ -21,13 +21,13 @@ export default function DailyTrackerAccordion(props) {
   
 
   return (
-    <Accordion className="daily-accord">
-      <Card className="accord-button">
-        <Accordion.Toggle  as={Card.Header} style={props.accordStyle} eventKey="0">
+    <Accordion className="dsh-accord-accord">
+      <Card className="dsh-accord-card">
+        <Accordion.Toggle  as={Card.Header} eventKey="0">
           Daily Tracker
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
-          <Container className="tracker-accord" >{renderTrackerCards()}</Container>
+          <div className="tracker-accord" >{renderTrackerCards()}</div>
         </Accordion.Collapse>
       </Card>
     </Accordion>

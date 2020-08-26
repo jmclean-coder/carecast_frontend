@@ -23,13 +23,13 @@ export default function JournalAccordion(props) {
     ));
   };
   return (
-    <Accordion className="accord-journal">
-      <Card className="accord-button">
-        <Accordion.Toggle  as={Card.Header}  style={props.accordStyle}  eventKey="3">
+    <Accordion className="dsh-accord-accord">
+      <Card className="dsh-accord-card">
+        <Accordion.Toggle  as={Card.Header}  eventKey="3">
           Journal{" "}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="3">
-          <Container>
+          <div>
             <Modal show={show} onHide={handleClose}>
               <JournalModal
                 handleClose={handleClose}
@@ -49,7 +49,7 @@ export default function JournalAccordion(props) {
                 See More
               </Button>
             </div>
-          </Container>
+          </div>
         </Accordion.Collapse>
       </Card>
     </Accordion>

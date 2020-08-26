@@ -15,24 +15,21 @@ export default function MoodAccordion(props) {
 
 
     const renderMoodCards = () =>{
-        return props.userFeelings.map(feeling => <MoodCard feelingList={props.feelings} feeling={feeling} key={`feeling_${uuidv4()}`}/>)
+        return props.todaysFeelings.map(userFeeling => <MoodCard feelingList={props.feelings} userFeeling={userFeeling} key={`user_feeling_${uuidv4()}`}/>)
 
     }
-    // const buildFeelingsList = () =>{
-    //     return props.feelings.map(feeling => {feeling.name})
-    // }
 
     return (
-        <Accordion className="accord-mood">
+        <Accordion className="dsh-accord-accord">
           <Modal show={show} onHide={handleClose}>
 <MoodModal feelings={props.feelings} addFeeling={props.addFeeling}/> 
   </Modal>
-        <Card className="accord-button">
-          <Accordion.Toggle  as={Card.Header}  style={props.accordStyle}  eventKey="0">
-            Today's Moods
+        <Card className="dsh-accord-card">
+          <Accordion.Toggle  as={Card.Header} eventKey="0">
+            Today's Feelings
           </Accordion.Toggle>
           <Accordion.Collapse className="mood_accordion" eventKey="0">
-            <Container> 
+            <div> 
        
               {renderMoodCards()}
               <div className="mood-btns-wrapper">
@@ -44,7 +41,7 @@ export default function MoodAccordion(props) {
             </div>
               </div>
 
-            </Container>
+            </div>
       
           </Accordion.Collapse>
         </Card>
