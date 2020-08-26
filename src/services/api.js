@@ -83,9 +83,6 @@ const fetchFeelings = () =>{
 }
 const postUserFeeling = feeling =>{
 
-    // feeling = {
-    //     feeling: feeling
-    // }
     return fetch(`${API_ROOT}/user_feelings`, {
         method: "POST",
         headers: headers(),
