@@ -26,7 +26,8 @@ export default class LoginForm extends React.Component {
     e.preventDefault();
     //calling the login method from api.auth object in services/api
     api.auth.login(this.state.fields).then((data) => {
-      console.log(data)
+      //generating token working, checked 8/27
+      console.log(data, "hello from loginform!")
       if (!data.error) {
         this.props.onLogin(data);
         this.props.routerProps.history.push("/dashboard");

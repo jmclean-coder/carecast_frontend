@@ -15,7 +15,7 @@ const headers = () => {
 
 
 const login = data => {
-    console.log(headers(), "hi from api login!")
+    console.log(headers(), "hi from api login!", data)
     return fetch(`${API_ROOT}/login`,{
         method: "POST",
         headers: headers(),
