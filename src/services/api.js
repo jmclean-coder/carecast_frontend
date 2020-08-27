@@ -49,7 +49,6 @@ const fetchUserData = id => {
         headers: headers()                                        
     })
     .then(res =>res.json())
-
 }
 const fetchCategories = () =>{
     console.log(headers(), "hi from api FetchC!")
