@@ -54,7 +54,7 @@ export default class App extends React.Component {
         this.getAffirmation();
       });
     }
-    console.log(this.state, 1);
+    // console.log(this.state, 1);
     this.setState({ loading: false });
   }
 
@@ -78,9 +78,9 @@ export default class App extends React.Component {
   //initial login, user is who they say they are authentication. set's token
   login = (data) => {
     // user data and token from fetch in api
-    // console.log(data);
+    console.log(data);
     //setting token in localstorage
-    console.log(this.state, 3);
+    console.log(this.state);
     localStorage.setItem("token", data.jwt);
     this.setState({
       auth: {
@@ -138,7 +138,7 @@ export default class App extends React.Component {
           loading: false,
         });
       });
-    console.log(this.state, 4);
+    // console.log(this.state, 4);
   };
 
   getCategories = () => {
@@ -161,7 +161,6 @@ export default class App extends React.Component {
 
   getAffirmation = () => {
     api.affirmation.fetchAffirmation().then((data) => {
-      console.log(data)
       this.setState({
         affirmation: data.affirmation,
       });
@@ -171,7 +170,6 @@ export default class App extends React.Component {
   addFeeling = (feeling) => {
     console.log(feeling[0]);
     api.feelings.postUserFeeling(feeling[0]).then((resFeeling) => {
-      console.log(resFeeling)
       this.setState((prevState) => ({
         userData: {
           ...prevState.userData,
@@ -182,9 +180,7 @@ export default class App extends React.Component {
   };
 
   addJournalEntry = (entry) => {
-    // console.log(entry)
     let editedEntry = { ...entry, user_id: this.state.auth.user.id };
-    // console.log(editedEntry)
     api.journals.postUserJournal(editedEntry).then((res) => {
       let resJournal = res.data.attributes;
       this.setState((prevState) => ({
@@ -197,7 +193,6 @@ export default class App extends React.Component {
   };
 
   updateJournalEntry = (entry, id) => {
-    console.log(entry, id);
     let editedEntry = { ...entry, user_id: this.state.auth.user.id };
     console.log(editedEntry);
     api.patch.patchJournal(editedEntry, id).then((res) => {

@@ -10,7 +10,7 @@ export default function LoaderHOC(WrappedComponent) {
             }
             
             render(){
-                    console.log(this.props)
+                    // console.log(this.props)
                     return this.isLoaded() ? <WrappedComponent {...this.props} /> : <LoadingPage />
             }
         }
