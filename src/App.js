@@ -113,7 +113,7 @@ export default class App extends React.Component {
     api.user.fetchUserData(id)
 
       .then((res) => {
-        console.log(res, "hi from getUD")
+        console.log(res, "hi from getUD response")
         const {
           full_name,
           journal_entries,
