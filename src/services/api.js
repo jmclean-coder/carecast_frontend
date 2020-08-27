@@ -50,7 +50,7 @@ const fetchUserData = id => {
     })
     .then(res => {
         console.log(res.json(), "response for user data")
-       return res.json()
+     res.json()
     })
 
 }
