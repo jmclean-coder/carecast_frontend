@@ -9,7 +9,7 @@ const headers = () => {
   return {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: token(),
+    Authorization: `Bearer ${token()}`,
   };
 };
 
@@ -48,7 +48,10 @@ const fetchUserData = id => {
     return fetch(`${API_ROOT}/users/${id}`, {
         headers: headers()                                        
     })
-    .then(res => res.json())
+    .then(res => {
+        console.log(res.json(), "response for user data")
+       return res.json()
+    })
 
 }
 const fetchCategories = () =>{
