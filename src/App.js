@@ -77,10 +77,10 @@ export default class App extends React.Component {
     this.getAffirmation();
   };
 
-  //initial login, user is who they say they are authentication. set's token
+  //Recieves data from loginForm fetch if no errors. Set's token in localstorage
   login = (data) => {
     // user data and token from fetch in api
-    console.log(data);
+    console.log(data, "hello from App login!");
     //setting token in localstorage
     localStorage.setItem("token", data.jwt);
     this.setState({
