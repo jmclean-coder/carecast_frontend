@@ -40,7 +40,9 @@ export default class App extends React.Component {
     this.setState({ loading: true });
     const token = localStorage.getItem("token");
     if (token) {
-      api.auth.getCurrentUser().then((user) => {
+      console.log(token, "hello from CDM-token!")
+      api.auth.getCurrentUser()
+      .then((user) => {
         this.setState({
           auth: {
             ...this.state.auth,
@@ -108,11 +110,10 @@ export default class App extends React.Component {
   };
 
   getUserData = (id) => {
-    api.user
-      .fetchUserData(id)
+    api.user.fetchUserData(id)
 
       .then((res) => {
-        console.log(res)
+        console.log(res, "hi from getUD")
         const {
           full_name,
           journal_entries,
@@ -138,12 +139,11 @@ export default class App extends React.Component {
           loading: false,
         });
       });
-    // console.log(this.state, 4);
   };
 
   getCategories = () => {
     api.categories.fetchCategories().then((res) => {
-      // console.log(res);
+      console.log(res, "hi from get Cate");
       this.setState({
         categories: res,
       });
@@ -152,7 +152,7 @@ export default class App extends React.Component {
 
   getFeelings = () => {
     api.feelings.fetchFeelings().then((res) => {
-      // console.log(res);
+      console.log(res, "hi from getFeels");
       this.setState({
         feelings: res,
       });
@@ -314,19 +314,19 @@ export default class App extends React.Component {
         <Router>
         {this.renderNavbar()}
           <Switch>
+          <Route
+              exact
+              path="/login"
+              render={(routerProps) => (
+                <LoginPage {...routerProps} onLogin={this.login} />
+              )}
+            />
             <Route exact path="/" component={HomePage} />
             <Route
               exact
               path="/signup"
               render={(routerProps) => (
                 <SignupPage {...routerProps} onSignup={this.signup} />
-              )}
-            />
-            <Route
-              exact
-              path="/login"
-              render={(routerProps) => (
-                <LoginPage {...routerProps} onLogin={this.login} />
               )}
             />
             <Route

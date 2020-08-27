@@ -15,6 +15,7 @@ const headers = () => {
 
 
 const login = data => {
+    console.log(headers(), "hi from api login!")
     return fetch(`${API_ROOT}/login`,{
         method: "POST",
         headers: headers(),
@@ -24,6 +25,7 @@ const login = data => {
 }
 
 const getCurrentUser = () =>{
+    console.log(headers(), "hi from api getCU!")
     return fetch(`${API_ROOT}/currentuser`, {
         headers: headers()
     })
@@ -32,7 +34,7 @@ const getCurrentUser = () =>{
 }
 
 const createNewUser = data => { 
-    
+    console.log(headers(), "hi from api createNU")
     return fetch(`${API_ROOT}/users`, {
         method: "POST",
         headers: headers(),
@@ -42,6 +44,7 @@ const createNewUser = data => {
 }
 
 const fetchUserData = id => {
+    console.log(headers(), "hi from api fetchUD!")
     return fetch(`${API_ROOT}/users/${id}`, {
         headers: headers()                                        
     })
@@ -49,6 +52,7 @@ const fetchUserData = id => {
 
 }
 const fetchCategories = () =>{
+    console.log(headers(), "hi from api FetchC!")
     return fetch(`${API_ROOT}/categories`,{
         headers: headers()
     })
