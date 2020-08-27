@@ -80,7 +80,6 @@ export default class App extends React.Component {
     // user data and token from fetch in api
     console.log(data);
     //setting token in localstorage
-    console.log(this.state);
     localStorage.setItem("token", data.jwt);
     this.setState({
       auth: {
@@ -90,6 +89,7 @@ export default class App extends React.Component {
       },
       loading: true,
     });
+    
     this.getUserData(data.id);
     this.getCategories();
     this.getFeelings();
