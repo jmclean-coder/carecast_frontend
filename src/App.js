@@ -114,30 +114,30 @@ export default class App extends React.Component {
 
       .then((data) => {
         console.log(data)
-        // const {
-        //   full_name,
-        //   journal_entries,
-        //   list_items,
-        //   feelings,
-        //   user_ratings,
-        //   todays_user_ratings,
-        //   todays_user_feelings,
-        //   user_feelings
-        // } = data.data.attributes;
-        // this.setState({
-        //   userData: {
-        //     ...this.state.userData,
-        //     fullName: full_name,
-        //     userRatings: [...user_ratings],
-        //     todaysRatings: [...todays_user_ratings],
-        //     feelings: [...feelings],
-        //     journalEntries: [...journal_entries],
-        //     todos: [...list_items],
-        //     todaysFeelings: [...todays_user_feelings],
-        //     userFeelings: [...user_feelings]
-        //   },
-        //   loading: false,
-        // });
+        const {
+          full_name,
+          journal_entries,
+          list_items,
+          feelings,
+          user_ratings,
+          todays_user_ratings,
+          todays_user_feelings,
+          user_feelings
+        } = data.data.attributes;
+        this.setState({
+          userData: {
+            ...this.state.userData,
+            fullName: full_name,
+            userRatings: [...user_ratings],
+            todaysRatings: [...todays_user_ratings],
+            feelings: [...feelings],
+            journalEntries: [...journal_entries],
+            todos: [...list_items],
+            todaysFeelings: [...todays_user_feelings],
+            userFeelings: [...user_feelings]
+          },
+          loading: false,
+        });
       }
       );
   };
