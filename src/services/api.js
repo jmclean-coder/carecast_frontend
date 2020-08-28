@@ -51,6 +51,7 @@ const fetchCategories = () => {
 };
 
 const patchRating = (data) => {
+    console.log(data, "hi from patch rating")
   return fetch(`${API_ROOT}/user_ratings/${data.id}`, {
     method: "PATCH",
     headers: headers(),
