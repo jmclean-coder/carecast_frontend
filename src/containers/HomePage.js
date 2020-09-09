@@ -14,19 +14,19 @@ function HomePage(props) {
   return (
     <div className="hm-wrapper">
 
-        <div>
+        <div style={{textAlign: "center"}}>
           <h1 className="header-h1">Care Cast</h1>
           <HeroImage className="home-hero" />
           <h3 className="home-subtitle">
             Give yourself the gift of care today.
           </h3>
-        </div>
-
         <div className="home-btn-container">
         <Link to="/signup">
         <Button variant="primary" className="btn-home-page" >Signup</Button>
         </Link>
         </div>
+        </div>
+
 
 
         <h2 className="home-sub-head">  What We Offer</h2>
