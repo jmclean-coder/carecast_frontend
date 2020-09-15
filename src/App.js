@@ -8,7 +8,7 @@ import ListPage from "./containers/ListPage";
 import SignupPage from "./containers/SignupPage";
 import HomeNavBar from "./components/homepage/HomeNavBar";
 import LoaderHOC from "./HOCs/LoaderHOC";
-import Footer from './containers/Footer'
+import Footer from "./containers/Footer";
 import {
   BrowserRouter as Router,
   Route,
@@ -21,8 +21,6 @@ const JournalWithLoading = LoaderHOC(JournalPage);
 const FeelingWithLoading = LoaderHOC(FeelingPage);
 const ListWithLoading = LoaderHOC(ListPage);
 
-
-
 export default class App extends React.Component {
   state = {
     auth: {
@@ -34,15 +32,15 @@ export default class App extends React.Component {
     feelings: [],
     affirmation: "",
     loading: false,
+    showNav: false,
   };
   //each time app mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
     this.setState({ loading: true });
     const token = localStorage.getItem("token");
     if (token) {
-      console.log(token, "hello from CDM-token!")
-      api.auth.getCurrentUser()
-      .then((user) => {
+      console.log(token, "hello from CDM-token!");
+      api.auth.getCurrentUser().then((user) => {
         this.setState({
           auth: {
             ...this.state.auth,
@@ -91,7 +89,7 @@ export default class App extends React.Component {
       },
       loading: true,
     });
-    
+
     this.getUserData(data.id);
     this.getCategories();
     this.getFeelings();
@@ -110,10 +108,11 @@ export default class App extends React.Component {
   };
 
   getUserData = (id) => {
-    api.user.fetchUserData(id)
+    api.user
+      .fetchUserData(id)
 
       .then((data) => {
-        console.log(data)
+        console.log(data);
         const {
           full_name,
           journal_entries,
@@ -122,7 +121,7 @@ export default class App extends React.Component {
           user_ratings,
           todays_user_ratings,
           todays_user_feelings,
-          user_feelings
+          user_feelings,
         } = data.data.attributes;
         this.setState({
           userData: {
@@ -134,12 +133,11 @@ export default class App extends React.Component {
             journalEntries: [...journal_entries],
             todos: [...list_items],
             todaysFeelings: [...todays_user_feelings],
-            userFeelings: [...user_feelings]
+            userFeelings: [...user_feelings],
           },
           loading: false,
         });
-      }
-      );
+      });
   };
 
   getCategories = () => {
@@ -171,11 +169,14 @@ export default class App extends React.Component {
   addFeeling = (feeling) => {
     console.log(feeling[0]);
     api.feelings.postUserFeeling(feeling[0]).then((resUserFeeling) => {
-      console.log(resUserFeeling)
+      console.log(resUserFeeling);
       this.setState((prevState) => ({
         userData: {
           ...prevState.userData,
-          todaysFeelings: [...prevState.userData.todaysFeelings, resUserFeeling],
+          todaysFeelings: [
+            ...prevState.userData.todaysFeelings,
+            resUserFeeling,
+          ],
         },
       }));
     });
@@ -216,7 +217,6 @@ export default class App extends React.Component {
   };
 
   incrementRating = (categoryId) => {
-
     let foundRating = this.state.userData.todaysRatings.find(
       (stateRating) => stateRating.category_id === categoryId
     );
@@ -289,34 +289,126 @@ export default class App extends React.Component {
     );
   };
 
-
   renderNavbar = () => (
     <>
-    <Route path='/' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
-    <Route path='/dashboard' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
-    <Route path='/feeling_tracker' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
-    <Route path='/todos' exact render={() => <HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
-    <Route path='/journal' eaxct render={() =><HomeNavBar loggedIn={this.state.auth.loggedIn} onLogout={this.logout} />}/>
+      <Route
+        path="/"
+        exact
+        render={() => (
+          <HomeNavBar
+            loggedIn={this.state.auth.loggedIn}
+            onLogout={this.logout}
+            testToggle={this.testToggle}
+          />
+        )}
+      />
+      <Route
+        path="/dashboard"
+        exact
+        render={() => (
+          <HomeNavBar
+            loggedIn={this.state.auth.loggedIn}
+            onLogout={this.logout}
+          />
+        )}
+      />
+      <Route
+        path="/feeling_tracker"
+        exact
+        render={() => (
+          <HomeNavBar
+            loggedIn={this.state.auth.loggedIn}
+            onLogout={this.logout}
+          />
+        )}
+      />
+      <Route
+        path="/todos"
+        exact
+        render={() => (
+          <HomeNavBar
+            loggedIn={this.state.auth.loggedIn}
+            onLogout={this.logout}
+          />
+        )}
+      />
+      <Route
+        path="/journal"
+        eaxct
+        render={() => (
+          <HomeNavBar
+            loggedIn={this.state.auth.loggedIn}
+            onLogout={this.logout}
+          />
+        )}
+      />
     </>
-  )
+  );
 
   renderFooter = () => (
     <>
-    <Route path='/' exact render={() => <Footer />}/>
-    <Route path='/dashboard' exact render={() => <Footer />}/>
-    <Route path='/feeling_tracker' exact render={() => <Footer />}/>
-    <Route path='/todos' exact render={() => <Footer />}/>
-    <Route path='/journal' eaxct render={() =><Footer />}/>
+      <Route path="/" exact render={() => <Footer />} />
+      <Route path="/dashboard" exact render={() => <Footer />} />
+      <Route path="/feeling_tracker" exact render={() => <Footer />} />
+      <Route path="/todos" exact render={() => <Footer />} />
+      <Route path="/journal" eaxct render={() => <Footer />} />
     </>
-  )
+  );
+
+  testToggle = () => {
+    console.log("hi from testToggle")
+    this.setState(prevState => ({
+      showNav: !prevState.showNav
+    }))
+  };
 
   render() {
     return (
       <div className="App">
         <Router>
-        {this.renderNavbar()}
+          {this.renderNavbar()}
+          {this.state.showNav && (
+          <div className="test">
+            <Container className="text-center" >
+              <Nav>
+                {token ? (
+                  <Nav.Link as={Link} to="/dashboard">
+                    Dashboard
+                  </Nav.Link>
+                ) : null}
+
+                {token ? (
+                  <Nav.Link as={Link} to="/journal">
+                    Journal
+                  </Nav.Link>
+                ) : null}
+
+                {token ? (
+                  <Nav.Link as={Link} to="/feeling_tracker">
+                    Feelings Tracker
+                  </Nav.Link>
+                ) : null}
+
+                {token ? (
+                  <Nav.Link as={Link} to="/todos">
+                    To-Do List
+                  </Nav.Link>
+                ) : null}
+
+                {token ? (
+                  <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>
+                ) : (
+                  <Nav.Link as={Link} to="/login">
+                    Login
+                  </Nav.Link>
+                )}
+              </Nav>
+              </Container>
+
+          </div>
+          )}
           <Switch>
-          <Route
+            <Route
               exact
               path="/login"
               render={(routerProps) => (
@@ -396,7 +488,7 @@ export default class App extends React.Component {
               )}
             />
           </Switch>
-        {this.renderFooter()}
+          {this.renderFooter()}
         </Router>
       </div>
     );
