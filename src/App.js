@@ -7,8 +7,10 @@ import FeelingPage from "./containers/FeelingPage";
 import ListPage from "./containers/ListPage";
 import SignupPage from "./containers/SignupPage";
 import HomeNavBar from "./components/homepage/HomeNavBar";
+import NavMenu from "./components/NavMenu"
 import LoaderHOC from "./HOCs/LoaderHOC";
 import Footer from "./containers/Footer";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -96,14 +98,16 @@ export default class App extends React.Component {
     this.getAffirmation();
   };
 
-  logout = () => {
+  signout = () => {
     localStorage.removeItem("token");
     this.setState({
       auth: { user: {}, loggedIn: false },
       userData: {},
       categories: [],
       feelings: [],
-      quotes: [],
+    affirmation: "",
+    loading: false,
+    showNav: false,
     });
   };
 
@@ -297,7 +301,6 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            onLogout={this.logout}
             testToggle={this.testToggle}
           />
         )}
@@ -308,7 +311,7 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            onLogout={this.logout}
+            testToggle={this.testToggle}
           />
         )}
       />
@@ -318,7 +321,7 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            onLogout={this.logout}
+            testToggle={this.testToggle}
           />
         )}
       />
@@ -328,7 +331,7 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            onLogout={this.logout}
+            testToggle={this.testToggle}
           />
         )}
       />
@@ -338,7 +341,7 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            onLogout={this.logout}
+            testToggle={this.testToggle}
           />
         )}
       />
@@ -368,44 +371,7 @@ export default class App extends React.Component {
         <Router>
           {this.renderNavbar()}
           {this.state.showNav && (
-          <div className="test">
-            <Container className="text-center" >
-              <Nav>
-                {token ? (
-                  <Nav.Link as={Link} to="/dashboard">
-                    Dashboard
-                  </Nav.Link>
-                ) : null}
-
-                {token ? (
-                  <Nav.Link as={Link} to="/journal">
-                    Journal
-                  </Nav.Link>
-                ) : null}
-
-                {token ? (
-                  <Nav.Link as={Link} to="/feeling_tracker">
-                    Feelings Tracker
-                  </Nav.Link>
-                ) : null}
-
-                {token ? (
-                  <Nav.Link as={Link} to="/todos">
-                    To-Do List
-                  </Nav.Link>
-                ) : null}
-
-                {token ? (
-                  <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>
-                ) : (
-                  <Nav.Link as={Link} to="/login">
-                    Login
-                  </Nav.Link>
-                )}
-              </Nav>
-              </Container>
-
-          </div>
+          <NavMenu signout={this.signout}></NavMenu>
           )}
           <Switch>
             <Route
