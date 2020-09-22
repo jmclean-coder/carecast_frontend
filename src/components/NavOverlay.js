@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import { Link } from "react-router-dom";
 
 export default function NavOverlay(props) {
+  //add's class to body to prevent backgropund scrolling with Overlay mounts, removes class on unmount.
 useEffect(() => {
     document.body.classList.add('mobile-nav-opened')
 

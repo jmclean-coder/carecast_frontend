@@ -8,7 +8,10 @@ import { Link } from "react-router-dom";
 const token = localStorage.getItem("token");
 
 export default function HomeNavBar(props) {
+
   const [open, setOpen] = useState(false);
+
+  //toggle's App 'showNav' state value, and local useState value
   const toggle = () => {
     console.log("clicked");
     props.toggleClassOnNavOpen();
@@ -18,6 +21,7 @@ export default function HomeNavBar(props) {
   return (
     <div className="nav-container">
       <nav>
+        {/* using 'open' state value to conditionally mount/unmount menu icons */}
         {open ? (
           <a className="nav-btn-toggle" onClick={toggle}>
             <MenuClose />
