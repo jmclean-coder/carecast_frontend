@@ -7,7 +7,6 @@ import FeelingPage from "./containers/FeelingPage";
 import ListPage from "./containers/ListPage";
 import SignupPage from "./containers/SignupPage";
 import HomeNavBar from "./components/homepage/HomeNavBar";
-import NavMenu from "./components/NavMenu"
 import LoaderHOC from "./HOCs/LoaderHOC";
 import Footer from "./containers/Footer";
 
