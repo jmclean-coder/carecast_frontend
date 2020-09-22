@@ -301,7 +301,8 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            testToggle={this.testToggle}
+            toggleClassOnNavOpen={this.toggleClassOnNavOpen}
+            showNav={this.state.showNav}
           />
         )}
       />
@@ -311,7 +312,8 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            testToggle={this.testToggle}
+            toggleClassOnNavOpen={this.toggleClassOnNavOpen}
+            showNav={this.state.showNav}
           />
         )}
       />
@@ -321,7 +323,8 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            testToggle={this.testToggle}
+            toggleClassOnNavOpen={this.toggleClassOnNavOpen}
+            showNav={this.state.showNav}
           />
         )}
       />
@@ -331,7 +334,8 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            testToggle={this.testToggle}
+            toggleClassOnNavOpen={this.toggleClassOnNavOpen}
+            showNav={this.state.showNav}
           />
         )}
       />
@@ -341,7 +345,8 @@ export default class App extends React.Component {
         render={() => (
           <HomeNavBar
             loggedIn={this.state.auth.loggedIn}
-            testToggle={this.testToggle}
+            toggleClassOnNavOpen={this.toggleClassOnNavOpen}
+            showNav={this.state.showNav}
           />
         )}
       />
@@ -358,8 +363,9 @@ export default class App extends React.Component {
     </>
   );
 
-  testToggle = () => {
-    console.log("hi from testToggle")
+  //toggle boolean state value to to control Nav overlay render 
+  //this function and 'showNav' are passed to HomeNavBar
+  toggleClassOnNavOpen = () => {
     this.setState(prevState => ({
       showNav: !prevState.showNav
     }))
@@ -367,12 +373,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={this.state.showNav ?  'App mobile-nav-opened' : 'App'}>
         <Router>
           {this.renderNavbar()}
-          {this.state.showNav && (
-          <NavMenu signout={this.signout}></NavMenu>
-          )}
           <Switch>
             <Route
               exact
