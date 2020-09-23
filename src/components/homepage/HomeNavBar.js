@@ -8,21 +8,15 @@ import { Link } from "react-router-dom";
 const token = localStorage.getItem("token");
 
 export default function HomeNavBar(props) {
-
-  const [open, setOpen] = useState(false);
-
   //toggle's App 'showNav' state value, and local useState value
   const toggle = () => {
-    console.log("clicked");
     props.toggleClassOnNavOpen();
-    setOpen(!open);
   };
-  
+
   return (
     <div className="nav-container">
       <nav>
-        {/* using 'open' state value to conditionally mount/unmount menu icons */}
-        {open ? (
+        {props.showNav ? (
           <a className="nav-btn-toggle" onClick={toggle}>
             <MenuClose />
           </a>
@@ -32,10 +26,10 @@ export default function HomeNavBar(props) {
           </a>
         )}
         <div className="left-menu">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/journal">Journal</Link>
-          <Link to="/feeling_tracker">Feelings Tracker</Link>
-          <Link to="/todos">Todos</Link>
+          <Link className="D-nav" to="/dashboard">Dashboard</Link>
+          <Link className="D-nav" to="/journal">Journal</Link>
+          <Link className="D-nav" to="/feeling_tracker">Feelings Tracker</Link>
+          <Link className="D-nav" to="/todos">Todos</Link>
         </div>
 
         <Link className="logo" to="/dashboard">
@@ -44,8 +38,7 @@ export default function HomeNavBar(props) {
       </nav>
       {/* using 'showNav' to conditionally render overlay, animations only run on mount and unmount, 
       so this is currently necessary  */}
-      {props.showNav ? <NavOverlay open={open}></NavOverlay> : null}
-
+     <NavOverlay toggle={toggle} showNav={props.showNav}></NavOverlay>
       {!token ? (
         <Button
           id="home-btn-signed-out"
