@@ -9,7 +9,6 @@ import SignupPage from "./containers/SignupPage";
 import HomeNavBar from "./components/homepage/HomeNavBar";
 import LoaderHOC from "./HOCs/LoaderHOC";
 import Footer from "./containers/Footer";
-
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +20,7 @@ const DashboardWithLoading = LoaderHOC(DashboardPage);
 const JournalWithLoading = LoaderHOC(JournalPage);
 const FeelingWithLoading = LoaderHOC(FeelingPage);
 const ListWithLoading = LoaderHOC(ListPage);
-
+const token = localStorage.getItem("token")
 export default class App extends React.Component {
   state = {
     auth: {
@@ -35,10 +34,12 @@ export default class App extends React.Component {
     loading: false,
     showNav: false,
   };
+
+ 
+  
   //each time app mounts checks to see if authorized to access so you don't have to login again
   componentDidMount() {
     this.setState({ loading: true });
-    const token = localStorage.getItem("token");
     if (token) {
       console.log(token, "hello from CDM-token!");
       api.auth.getCurrentUser().then((user) => {
@@ -98,6 +99,7 @@ export default class App extends React.Component {
   };
 
   signout = () => {
+    console.log('hi from signout')
     localStorage.removeItem("token");
     this.setState({
       auth: { user: {}, loggedIn: false },
@@ -302,6 +304,7 @@ export default class App extends React.Component {
             loggedIn={this.state.auth.loggedIn}
             toggleClassOnNavOpen={this.toggleClassOnNavOpen}
             showNav={this.state.showNav}
+            signout={this.signout}
           />
         )}
       />
