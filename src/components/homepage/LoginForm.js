@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { Button, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import { ReactComponent as FlowerHeart } from "../../assets/svgComponents/Icons/FlowerHeartAnimated.svg";
@@ -23,6 +23,7 @@ export default class LoginForm extends React.Component {
   };
 
   handleSubmit = (e) => {
+    console.log(e)
     e.preventDefault();
     //calling the login method from api.auth object in services/api
     api.auth.login(this.state.fields).then((data) => {
@@ -44,7 +45,6 @@ export default class LoginForm extends React.Component {
   };
 
   render() {
-    // console.log(api)
     const { fields } = this.state;
     return (
       <>

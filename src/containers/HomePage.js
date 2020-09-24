@@ -8,7 +8,7 @@ import { ReactComponent as BoxSmileyBig } from "../assets/svgComponents/Icons/Bo
 import { ReactComponent as RedPen } from "../assets/svgComponents/Icons/RedPen.svg";
 import { ReactComponent as Book } from "../assets/svgComponents/Icons/Book.svg";
 
-function HomePage(props) {
+function HomePage() {
   return (
     <div className="hm-wrapper">
       <div style={{ textAlign: "center" }}>
