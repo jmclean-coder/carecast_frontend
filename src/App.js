@@ -313,6 +313,7 @@ export default class App extends React.Component {
             loggedIn={this.state.auth.loggedIn}
             toggleClassOnNavOpen={this.toggleClassOnNavOpen}
             showNav={this.state.showNav}
+            signout={this.signout}
           />
         )}
       />
@@ -324,6 +325,7 @@ export default class App extends React.Component {
             loggedIn={this.state.auth.loggedIn}
             toggleClassOnNavOpen={this.toggleClassOnNavOpen}
             showNav={this.state.showNav}
+            signout={this.signout}
           />
         )}
       />
@@ -335,6 +337,7 @@ export default class App extends React.Component {
             loggedIn={this.state.auth.loggedIn}
             toggleClassOnNavOpen={this.toggleClassOnNavOpen}
             showNav={this.state.showNav}
+            signout={this.signout}
           />
         )}
       />
@@ -346,6 +349,7 @@ export default class App extends React.Component {
             loggedIn={this.state.auth.loggedIn}
             toggleClassOnNavOpen={this.toggleClassOnNavOpen}
             showNav={this.state.showNav}
+            signout={this.signout}
           />
         )}
       />
