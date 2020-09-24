@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { ReactComponent as FlowerHeartLogoMobile } from "../../assets/svgComponents/Icons/FlowerHeartLogoMobile.svg";
-import MenuOpen from "../../assets/svgComponents/MenuOpen";
-import MenuClose from "../../assets/svgComponents/MenuClose";
 import NavOverlay from "../NavOverlay";
+import NavToggle from "./NavToggle"
 import { Link } from "react-router-dom";
 const token = localStorage.getItem("token");
 
@@ -16,15 +15,7 @@ export default function HomeNavBar(props) {
   return (
     <div className="nav-container">
       <nav>
-        {props.showNav ? (
-          <a className="nav-btn-toggle" onClick={toggle}>
-            <MenuClose />
-          </a>
-        ) : (
-          <a className="nav-btn-toggle" onClick={toggle}>
-            <MenuOpen />
-          </a>
-        )}
+       {token && <NavToggle showNav={props.showNav} toggle={toggle}></NavToggle>}
         <div className="left-menu">
           <Link className="D-nav" to="/dashboard">Dashboard</Link>
           <Link className="D-nav" to="/journal">Journal</Link>
@@ -38,7 +29,7 @@ export default function HomeNavBar(props) {
       </nav>
       {/* using 'showNav' to conditionally render overlay, animations only run on mount and unmount, 
       so this is currently necessary  */}
-     <NavOverlay toggle={toggle} showNav={props.showNav}></NavOverlay>
+     {token && <NavOverlay toggle={toggle} showNav={props.showNav} signout={props.signout}></NavOverlay>}
       {!token ? (
         <Button
           id="home-btn-signed-out"
