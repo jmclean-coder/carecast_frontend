@@ -10,32 +10,29 @@
   }
 
   .btn.btn-secondary {
-    width: 245px;
+    width: 100px;
     height: 44px;
     filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
     background: #ffffff;
+    color: #2e404b;
     border: 2.5px solid #f4cd9c;
     box-sizing: border-box;
     border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
   }
   .btn.btn-primary {
-    z-index: -1;
     width: 153px;
     height: 40px;
     filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
     border-color: #bdceae;
     background: #bdceae;
     border-radius: 10px;
-    font-family: Montserrat;
-    font-style: normal;
     font-weight: 600;
-    font-size: 16px;
     line-height: 25px;
     text-transform: uppercase;
     color: #2e404b;
-    text-transform: uppercase;
-    color: #2e404b;
-    position: relative;
   }
 
   .btn-primary:disabled {
@@ -67,14 +64,6 @@
     background-clip: border-box;
     border: 0px;
     border-radius: 0px;
-  }
-
-  #hm-btn-signed-out {
-    text-decoration: none;
-    width: 5.6875em;
-    height: 2.75em;
-    margin: auto;
-    filter: drop-shadow(0px 4px 10px rgba(196, 196, 196, 0.2));
   }
 
   a {
@@ -122,6 +111,9 @@
       transform: translateY(0);
       transition: transform .25s ease-out;
    }
+
+
+  
 
 }
 
@@ -194,10 +186,16 @@ h3 {
   grid-column: 1;
 }
 
+.hm-btn-signed-out {
+grid-column: 3;
+}
+
 .nav-btn-toggle {
   z-index: 100;
   width: fit-content;
-  padding: 10px 0px 0px 22px;
+  background: transparent;
+  border: none;
+
 }
 
 .nav-btn-open,
@@ -213,7 +211,8 @@ h3 {
   background: rgb(255, 232, 207);
   overflow: auto;
   z-index: 2;
-  -webkit-transition: 1s ease;
+  transition: 3s ease;
+  -webkit-transition: 3s ease;
 }
 .mobile-nav-menu {
   display: grid;
@@ -227,7 +226,7 @@ h3 {
 }
 
 body.mobile-nav-opened {
-  overflow-y: hidden;
+  overflow: hidden;
 }
 .hm-wrapper {
   grid-area: main;
@@ -469,5 +468,16 @@ body.mobile-nav-opened {
 @media (min-width: 600px) {
   .sign-up-btn-container {
     width: 25%;
+  }
+}
+
+@keyframes fade_in_show {
+  0% {
+       opacity: 0;
+       transform: scale(0)
+  }
+  100% {
+       opacity: 1;
+       transform: scale(1)
   }
 }

@@ -5,13 +5,13 @@ import MenuClose from "../../assets/svgComponents/MenuClose";
 export default function NavToggle(props) {
     return (
         props.showNav ? (
-            <a className="nav-btn-toggle" onClick={props.toggle}>
+            <button className="nav-btn-toggle" onClick={props.toggle}>
               <MenuClose />
-            </a>
+            </button>
           ) : (
-            <a className="nav-btn-toggle" onClick={props.toggle}>
+            <button className="nav-btn-toggle" onClick={props.toggle}>
               <MenuOpen />
-            </a>
+            </button>
           )
     )
 }
