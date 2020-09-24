@@ -18,6 +18,7 @@ export default function NavOverlay(props) {
         <Link className="M-nav" onClick={props.toggle} to="/journal">Journal</Link>
         <Link className="M-nav" onClick={props.toggle} to="/feeling_tracker">Feelings Tracker</Link>
         <Link className="M-nav" onClick={props.toggle} to="/todos">Todos</Link>
+        <Link className="M-nav" onClick={props.signout}>Sign Out</Link>
         
       </div>
     </div>
