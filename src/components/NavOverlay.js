@@ -13,9 +13,9 @@ export default function NavOverlay(props) {
     }
 
   return (
-    //toggle display value based on boolean from App State
     <div
-      className="overlay"
+    className="overlay"
+    //toggle display value based on boolean from App State
       style={{ display: props.showNav ? "block" : "none" }}
     >
       <div className="mobile-nav-menu">
