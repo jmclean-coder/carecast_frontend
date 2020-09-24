@@ -8,8 +8,8 @@ export default function NavOverlay(props) {
     : document.body.classList.remove("mobile-nav-opened");
 
     const handleSignout = () => {
-      props.toggle()
       props.signout()
+      document.body.classList.remove("mobile-nav-opened")
     }
 
   return (
