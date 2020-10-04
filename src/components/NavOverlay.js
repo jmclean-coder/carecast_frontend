@@ -11,11 +11,10 @@ export default function NavOverlay(props) {
       props.signout()
       document.body.classList.remove("mobile-nav-opened")
     }
-
+    //toggle display value based on boolean from App State
   return (
     <div
     className="overlay"
-    //toggle display value based on boolean from App State
       style={{ display: props.showNav ? "block" : "none" }}
     >
       <div className="mobile-nav-menu">
